@@ -1,0 +1,12 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+img {
+    visibility: hidden;
+}
+#blackJackCanvas {
+    position : absolute;
+    border: 6px ridge red;
+    background-color: green;
+}
