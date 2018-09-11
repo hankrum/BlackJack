@@ -1,11 +1,15 @@
 class Data {
-    constructor(options) {
-        this._options = options;
-        this._positions = [];
-        this._button = new Button(this._options.buttonPosition, this._options.buttonSize, this._options);
+    constructor() {
+        this._playerCards = [];
+        this._dealerCards = [];
+        this._bid = 0;
         this._deck = new Deck(options.deckPosition, options);
-        this._setPositions();
-        this._cards = this.setFirstCards();
+
+        // this._options = options;
+        // this._positions = [];
+        // this._button = new Button(this._options.buttonPosition, this._options.buttonSize, this._options);
+        // this._setPositions();
+        // this._cards = this.setFirstCards();
     }
 
     get cards() {

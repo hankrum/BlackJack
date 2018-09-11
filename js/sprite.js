@@ -1,9 +1,22 @@
 class Sprite {
-    constructor(basePoint) {
-        this._currentPosition = basePoint;
+    constructor(position, image, height, width, clickImage) {
+        this._position = position;
+        this._image = image;
+        this._height = height;
+        this._width = width;
+        this._clickImage = clickImage;
+        this._clicked = false;
     }
 
-    get currentPosition() {
-        return this._currentPosition;
+    set clicked(value) {
+        this._clicked = value;
+    }
+
+    get position() {
+        return this._position;
+    }
+
+    get image() {
+        return this._clicked ? this._clickImage : this._image;
     }
 }

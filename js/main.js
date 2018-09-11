@@ -6,7 +6,7 @@ window.addEventListener('load', function () {
 
     canvas.width = options.canvasDimensions.w;
     canvas.height = options.canvasDimensions.h;
-
+debugger;
     const context = canvas.getContext("2d");
 
     const data = new Data(options);

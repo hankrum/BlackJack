@@ -1,4 +1,5 @@
 class Renderer {
+
     constructor(context, options, data) {
         this._context = context;
         this._options = options;
@@ -16,10 +17,26 @@ class Renderer {
         this._context.strokeText(text, this._options.canvasDimensions.w / 2, 70 * this._options.resizeValue);
     }
 
-    render(image, position, width, height) {
+    delimiter() {
+        const fontString = Math.floor(30 * this._options.resizeValue) + "pt Comic Sans MS";
+        const text = "Virtual Online Casino";
+        this._context.font = fontString;
+        this._context.fillStyle = 'white';
+        this._context.textAlign = "center";
+        this._context.fillText(text, this._options.canvasDimensions.w / 2,  this._options.canvasDimensions.h / 2);
+        this._context.strokeStyle = 'red';
+        this._context.strokeText(text, this._options.canvasDimensions.w / 2, this._options.canvasDimensions.h / 2);
+    }
+
+    render(sprite) {
         this._context.shadowBlur = 20;
         this._context.shadowColor = "black";
-        this._context.drawImage(image, position.x, position.y, width, height);
+        this._context.drawImage (
+            sprite.image, 
+            sprite.position.x, 
+            sprite.position.y, 
+            width, 
+            height);
     }
 
     position(position) {

@@ -1,14 +1,26 @@
 class Card extends Sprite {
-    constructor(basePoint, endPoint, cardNumber, speed, positionDestination, image) {
-        super(basePoint)
+    constructor (
+        number, 
+        destination, 
+        endPoint, 
+        speed, 
+        image, 
+        position, 
+        image, 
+        height, 
+        width, 
+        clickImage) {
+
+        super(position, image, height, width, clickImage)
+
+
         this._endPoint = endPoint;
-        this._cardNumber = cardNumber;
+        this._number = number;
         this._speed = speed;
-        this._positionDestination = positionDestination;
+        this._destination = destination;
         this._moveData = 1;
-        this._image = image;
         this._reachedEndPoint = false;
-        this._cardOut = false;
+
         this.setNewMoveData();
         this._deleted = false;
     }
@@ -17,12 +29,9 @@ class Card extends Sprite {
         return this._currentPosition;
     }
 
-    get cardNumber() {
-        return this._cardNumber;
-    }
-
-    get image() {
-        return this._image;
+    get number() {
+        return this._n
+        umber;
     }
 
     get cardOut() {
@@ -33,7 +42,7 @@ class Card extends Sprite {
         return this._reachedEndPoint;
     }
 
-    get positionDestination() {
+    get destination() {
         return this._positionDestination;
     }
 
