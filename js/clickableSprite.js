@@ -21,4 +21,18 @@ class ClickableSprite extends Sprite {
     get image() {
         return this._clicked ? this._clickImage : this._image;
     }
+
+    hasClick(positionToTest) {       //tests whether the mouse click is there
+        const buttonCenter 
+            = point(
+                this.position.x + this.width / 2, 
+                this.position.y + this.width / 2
+            );
+        const x = Math.abs(buttonCenter.x - positionToTest.x);
+        const y = Math.abs(buttonCenter.y - positionToTest.y);
+        const distancefromCenter = Math.sqrt(x * x + y * y);
+
+        const isWithinButton = distancefromCenter <= this.width / 2;
+        return isWithinButton;
+    }
 }

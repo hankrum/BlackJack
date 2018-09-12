@@ -1,11 +1,12 @@
 class Data {
-    constructor() {
+    constructor(options) {
         this._playerCards = [];
         this._dealerCards = [];
         this._bid = 0;
         this._deck = new Deck(options.deckPosition, options);
 
-        // this._options = options;
+        this._options = options;
+        this._buttonCaptions = ["Deal", "Hit", "Stand", "Double", "Split"]; // TODO: move in options
         // this._positions = [];
         // this._button = new Button(this._options.buttonPosition, this._options.buttonSize, this._options);
         // this._setPositions();
@@ -24,8 +25,8 @@ class Data {
         return this._deck;
     }
 
-    get button() {
-        return this._button;
+    get buttons() {
+        return this._buttons;
     }
 
     setFirstCards() {       //initial cards for positions 1, 2, 3, A and B before pressing cards and button
