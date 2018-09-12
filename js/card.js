@@ -5,13 +5,9 @@ class Card extends Sprite {
         endPoint, 
         speed, 
         image, 
-        position, 
-        image, 
-        height, 
-        width, 
-        clickImage) {
+        position) {
 
-        super(position, image, height, width, clickImage)
+        super(image, position)
 
 
         this._endPoint = endPoint;
@@ -20,6 +16,8 @@ class Card extends Sprite {
         this._destination = destination;
         this._moveData = 1;
         this._reachedEndPoint = false;
+        this._width = options.baseCardDimensions.w;
+        this._height = options.baseCardDimensions.h;
 
         this.setNewMoveData();
         this._deleted = false;
@@ -30,8 +28,7 @@ class Card extends Sprite {
     }
 
     get number() {
-        return this._n
-        umber;
+        return this._number;
     }
 
     get cardOut() {

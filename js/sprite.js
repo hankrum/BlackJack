@@ -1,5 +1,5 @@
 class Sprite {
-    constructor(position, image, height, width, clickImage) {
+    constructor(image, position, clickImage, height, width) {
         this._position = position;
         this._image = image;
         this._height = height;
