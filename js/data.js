@@ -47,18 +47,18 @@ class Data {
         return cards;
     }
 
-    _setPositions() {        //creates positions 1, 2, 3, A and B
-        const names = ["1", "2", "3", "A", "B"];
-        const wValues = [0.2, 0.4, 0.6, 0.4, 0.6];      //responsible for the place of the positions on the screen
-        const hValues = [0.2, 0.2, 0.2, 0.6, 0.6];
+    // _setPositions() {        //creates positions 1, 2, 3, A and B
+    //     const names = ["1", "2", "3", "A", "B"];
+    //     const wValues = [0.2, 0.4, 0.6, 0.4, 0.6];      //responsible for the place of the positions on the screen
+    //     const hValues = [0.2, 0.2, 0.2, 0.6, 0.6];
 
-        for (let i = 0; i < names.length; i += 1) {
-            const pos = new Position(
-                names[i],
-                point(this._options.canvasDimensions.w * wValues[i], this._options.canvasDimensions.h * hValues[i])
-            );
-            this._positions.push(pos);
-        }
-    }
+    //     for (let i = 0; i < names.length; i += 1) {
+    //         const pos = new Position(
+    //             names[i],
+    //             point(this._options.canvasDimensions.w * wValues[i], this._options.canvasDimensions.h * hValues[i])
+    //         );
+    //         this._positions.push(pos);
+    //     }
+    // }
 
 }

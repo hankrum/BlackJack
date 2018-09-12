@@ -1,27 +1,23 @@
-class Button extends Sprite {
-    constructor(position, width, caption, size) {
-        super(position);
+class Button extends ClickableSprite {
+    constructor(caption, clickImage, image, position, width) {
+        super(caption, clickImage, image, position, width);
 
         // this._redImage = loadImage('./images/red-button.png', width, width);
         // this._blueImage = loadImage('./images/blue-button.png', width, width);
-        this._pressed = false;
-        this._options = options;
-        this._caption = caption;
+        //this._pressed = false;
+        //this._options = options;
+        //this._caption = caption;
     }
 
-    get caption() {
-        return this._caption;
+    // get deck() {
+    //     return this._deck;
+    // }
+
+    toggleClicked() {
+        this.clicked = !this.clicked;
     }
 
-    get deck() {
-        return this._deck;
-    }
-
-    togglePressed() {
-        this._pressed = !this._pressed;
-    }
-
-    ClickOnButton(positionToTest) {       //tests whether the mouse click is on the button
+    clicked(positionToTest) {       //tests whether the mouse click is there
         const buttonCenter 
             = point(
                 position.x + width / 2, 

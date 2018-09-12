@@ -39,13 +39,13 @@ class Renderer {
             height);
     }
 
-    position(position) {
-        this._context.strokeRect(position.point.x + 3, position.point.y + 3, this._options.cardDimensions.w - 6, this._options.cardDimensions.h - 6);
-        this._context.font = "bold " + Math.floor(30 * this._options.resizeValue) + "pt Comic Sans MS";
-        this._context.fillStyle = 'red';
-        this._context.textAlign = "center";
-        this._context.fillText(position.name, position.point.x + this._options.cardDimensions.w / 2, position.point.y + this._options.cardDimensions.h / 2);
-    }
+    // position(position) {
+    //     this._context.strokeRect(position.point.x + 3, position.point.y + 3, this._options.cardDimensions.w - 6, this._options.cardDimensions.h - 6);
+    //     this._context.font = "bold " + Math.floor(30 * this._options.resizeValue) + "pt Comic Sans MS";
+    //     this._context.fillStyle = 'red';
+    //     this._context.textAlign = "center";
+    //     this._context.fillText(position.name, position.point.x + this._options.cardDimensions.w / 2, position.point.y + this._options.cardDimensions.h / 2);
+    // }
 
     button() {
         this.render(this._data.button.image, this._options.buttonPosition, this._options.buttonSize, this._options.buttonSize);
