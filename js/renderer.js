@@ -7,6 +7,8 @@ class Renderer {
     }
 
     heading() {           //Prints the heading
+        this.text(this._options.headingText, { size: 30, position: this._options.headingPosition })
+
         const fontString = "bold " + Math.floor(30 * this._options.resizeValue) + "pt Comic Sans MS";
         const text = "Blackjack";
         this._context.font = fontString;
@@ -28,15 +30,34 @@ class Renderer {
         this._context.strokeText(text, this._options.canvasDimensions.w / 2, this._options.canvasDimensions.h / 2);
     }
 
-    render(sprite) {
-        this._context.shadowBlur = 20;
-        this._context.shadowColor = "black";
-        this._context.drawImage (
-            sprite.image, 
-            sprite.position.x, 
-            sprite.position.y, 
-            width, 
-            height);
+    text(text, details) {
+        const fontString = 
+            details.bold ? "bold " : ""
+            + Math.floor(details.size * this._options.resizeValue)
+            + "pt "
+            + (details.font || "Comic Sans MS");
+
+        this._context.font = fontString;
+        this._context.fillStyle = details.fillStyle || "white";
+        this._context.textAlign = details.textAlign || "center";
+
+        this._context.fillText(text, details.position.x, details.position.y);
+        this._context.strokeStyle = details.strokeStyle || "red";
+        this._context.strokeText(text, details.position.x, details.position.y);
+    }
+
+    sprite(sprite) {
+        if (sprite.visible) {
+            this._context.shadowBlur = 20;
+            this._context.shadowColor = "black";
+            this._context.drawImage (
+                sprite.image, 
+                sprite.position.x, 
+                sprite.position.y, 
+                sprite.width, 
+                sprite.height
+            );
+        }
     }
 
     // position(position) {

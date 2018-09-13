@@ -16,13 +16,17 @@ class Data {
         // this._cards = this.setFirstCards();
     }
 
-    get cards() {
-        return this._cards;
+    get playerCards() {
+        return this._playerCards;
     }
 
-    get positions() {
-        return this._positions;
+    get playerCards() {
+        return this._playerCards;
     }
+
+    // get positions() {
+    //     return this._positions;
+    // }
 
     get deck() {
         return this._deck;
@@ -54,9 +58,17 @@ class Data {
     setButtons() {
         const buttons = [];
 
-        buttons = this._options.buttonDetails.map(function(){ return new Button(); });
+        buttons = this._options.buttonDetails.map(function(details){ return new Button(details); });
 
         return buttons;
+    }
+
+    setChips() {
+        const chips = [];
+
+        chips = this._options.chipDetails.map(function(details){ return new Chip(details)});
+
+        return chips;
     }
 
     // _setPositions() {        //creates positions 1, 2, 3, A and B

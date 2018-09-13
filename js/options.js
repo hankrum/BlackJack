@@ -12,7 +12,6 @@ class Options {
 
         this.baseCanvasDimensions = baseCanvasDimensions;
 
-
         const resizeValue = this.calculateInitialResize();       
         const canvasDimensions = {
             w: baseCanvasDimensions.w * resizeValue,
@@ -108,9 +107,12 @@ class Options {
         this.chipDetails = this._chipCaptions.map(function(chipCaption, i) {
             return{
                 caption: chipCaption,
-                position: new Point (this._firstChipPosition.x + i * this._chipOffset, this._firstChipPosition.y);
+                position: new Point (this._firstChipPosition.x + i * this._chipOffset, this._firstChipPosition.y),
             };
         });
+
+        this.headingText = "BLACKJACK";
+        this.headingPosition = new Point(this.canvasDimensions.w / 2, 70 * this.resizeValue);
 
         // this.outPoint = {
         //     x: canvasDimensions.w * 0.3,
