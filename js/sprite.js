@@ -1,10 +1,11 @@
 class Sprite {
-    constructor(image, position, width, height) {
-        this._position = position;
-        this._image = image;
-        this._width = width;
-        this._height = height || width;
+    constructor(details) {
+        this._position = details.position;
+        this._image = details.image;
+        this._width = details.width;
+        this._height = details.height || width;
         this._visible = true;
+        this._caption = details.caption;
     }
 
     get position() {
@@ -17,5 +18,17 @@ class Sprite {
 
     get visible() {
         return this._visible;
+    }
+
+    get caption() {
+        return this._caption;
+    }
+
+    get width() {
+        return this._width;
+    }
+
+    get height() {
+        return this._height;
     }
 }

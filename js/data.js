@@ -2,6 +2,9 @@ class Data {
     constructor(options) {
         this._playerCards = [];
         this._dealerCards = [];
+        this._buttons = [];
+        this._chips = [];
+
         this._bid = 0;
         this._deck = new Deck(options.deckPosition, options);
 
@@ -46,6 +49,14 @@ class Data {
             cards.push(card);
         }
         return cards;
+    }
+
+    setButtons() {
+        const buttons = [];
+
+        buttons = this._options.buttonDetails.map(function(){ return new Button(); });
+
+        return buttons;
     }
 
     // _setPositions() {        //creates positions 1, 2, 3, A and B

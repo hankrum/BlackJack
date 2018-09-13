@@ -4,10 +4,9 @@ class Card extends Sprite {
         destination, 
         endPoint, 
         speed, 
-        image, 
-        position) {
+        details) {
 
-        super(image, position)
+        super(details)
 
 
         this._endPoint = endPoint;

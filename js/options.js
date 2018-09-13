@@ -52,24 +52,53 @@ class Options {
         this.dealerCardOffset = 0.1;
         
         this.buttonSize = 80 * resizeValue;
-        this.buttonPositions = {
-            deal: new Point (
-                canvasDimensions.w * 0.6,
-                canvasDimensions.h * 0.8
-        ),
-            hit: new Point (   
+        this.buttonDetails = [
+            {
+                caption: "Deal",
+                position: new Point (
+                    canvasDimensions.w * 0.6,
+                    canvasDimensions.h * 0.8
+                ),
+            },
+            {
+                caption: "Hit",
+                position: new Point (
                     canvasDimensions.w * 0.7,
                     canvasDimensions.h * 0.8
                 ),
-           stand: new Point (
-                canvasDimensions.w * 0.8,
-                canvasDimensions.h * 0.8
-           ),
-           double: new Point (
-                canvasDimensions.w * 0.9,
-                canvasDimensions.h * 0.8
-           ),
-        }
+            },
+            {
+                caption: "Stand",
+                position: new Point (
+                    canvasDimensions.w * 0.8,
+                    canvasDimensions.h * 0.8
+                ),
+            },
+            {
+                caption: "Double",
+                position: new Point (
+                    canvasDimensions.w * 0.9,
+                    canvasDimensions.h * 0.8
+                ),
+            },
+            {
+                caption: "Split",
+                position: new Point (
+                    canvasDimensions.w * 0.5,
+                    canvasDimensions.h * 0.8
+                ),
+            },
+            {
+                caption: "Insure",
+                position: new Point (
+                    canvasDimensions.w * 0.4,
+                    canvasDimensions.h * 0.8
+                ),
+            },
+        ];
+        
+        this.buttonDetails.forEach(function(x){ x.width = this.buttonSize });
+
         this.outPoint = {
             x: canvasDimensions.w * 0.3,
             y: canvasDimensions.h
