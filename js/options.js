@@ -51,7 +51,7 @@ class Options {
 
         this.dealerCardOffset = 0.1;
         
-        this.buttonSize = 80 * resizeValue;
+        this._buttonSize = 80 * resizeValue;
         this.buttonDetails = [
             {
                 caption: "Deal",
@@ -96,13 +96,26 @@ class Options {
                 ),
             },
         ];
-        
-        this.buttonDetails.forEach(function(x){ x.width = this.buttonSize });
 
-        this.outPoint = {
-            x: canvasDimensions.w * 0.3,
-            y: canvasDimensions.h
-        };
+        this.buttonDetails.forEach(function(x){ x.width = this._buttonSize });
+
+        this._firstChipPosition = new Point(canvasDimensions.w * 0.1, canvasDimensions.h * 0.8);
+        this._chipSize = 80 * this.resizeValue;
+        this._chipOffset = this._chipSize + 20 * this.resizeValue;
+
+        this._chipCaptions = ["5", "10", "50", "100"];
+
+        this.chipDetails = this._chipCaptions.map(function(chipCaption, i) {
+            return{
+                caption: chipCaption,
+                position: new Point (this._firstChipPosition.x + i * this._chipOffset, this._firstChipPosition.y);
+            };
+        });
+
+        // this.outPoint = {
+        //     x: canvasDimensions.w * 0.3,
+        //     y: canvasDimensions.h
+        // };
     }
 
     calculateInitialResize() {
