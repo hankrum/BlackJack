@@ -51,13 +51,14 @@ class Options {
         this.dealerCardOffset = 0.1;
         
         this._buttonSize = 80 * resizeValue;
-        this.buttonDetails = [
+        this.buttonsDetails = [
             {
                 caption: "Deal",
                 position: new Point (
                     canvasDimensions.w * 0.6,
                     canvasDimensions.h * 0.8
                 ),
+                visible: true,
             },
             {
                 caption: "Hit",
@@ -104,7 +105,7 @@ class Options {
 
         this._chipCaptions = ["5", "10", "50", "100"];
 
-        this.chipDetails = this._chipCaptions.map(function(chipCaption, i) {
+        this.chipsDetails = this._chipCaptions.map(function(chipCaption, i) {
             return{
                 caption: chipCaption,
                 position: new Point (this._firstChipPosition.x + i * this._chipOffset, this._firstChipPosition.y),

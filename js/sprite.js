@@ -4,7 +4,7 @@ class Sprite {
         this._image = details.image;
         this._width = details.width;
         this._height = details.height || width;
-        this._visible = true;
+        this._visible = details.visible || true;
         this._caption = details.caption;
     }
 

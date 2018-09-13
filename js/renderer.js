@@ -8,27 +8,18 @@ class Renderer {
 
     heading() {           //Prints the heading
         this.text(this._options.headingText, { size: 30, position: this._options.headingPosition })
-
-        const fontString = "bold " + Math.floor(30 * this._options.resizeValue) + "pt Comic Sans MS";
-        const text = "Blackjack";
-        this._context.font = fontString;
-        this._context.fillStyle = 'white';
-        this._context.textAlign = "center";
-        this._context.fillText(text, this._options.canvasDimensions.w / 2, 70 * this._options.resizeValue);
-        this._context.strokeStyle = 'red';
-        this._context.strokeText(text, this._options.canvasDimensions.w / 2, 70 * this._options.resizeValue);
     }
 
-    delimiter() {
-        const fontString = Math.floor(30 * this._options.resizeValue) + "pt Comic Sans MS";
-        const text = "Virtual Online Casino";
-        this._context.font = fontString;
-        this._context.fillStyle = 'white';
-        this._context.textAlign = "center";
-        this._context.fillText(text, this._options.canvasDimensions.w / 2,  this._options.canvasDimensions.h / 2);
-        this._context.strokeStyle = 'red';
-        this._context.strokeText(text, this._options.canvasDimensions.w / 2, this._options.canvasDimensions.h / 2);
-    }
+    // delimiter() {
+    //     const fontString = Math.floor(30 * this._options.resizeValue) + "pt Comic Sans MS";
+    //     const text = "Virtual Online Casino";
+    //     this._context.font = fontString;
+    //     this._context.fillStyle = 'white';
+    //     this._context.textAlign = "center";
+    //     this._context.fillText(text, this._options.canvasDimensions.w / 2,  this._options.canvasDimensions.h / 2);
+    //     this._context.strokeStyle = 'red';
+    //     this._context.strokeText(text, this._options.canvasDimensions.w / 2, this._options.canvasDimensions.h / 2);
+    // }
 
     text(text, details) {
         const fontString = 
@@ -57,6 +48,16 @@ class Renderer {
                 sprite.width, 
                 sprite.height
             );
+            if (sprite.caption) {
+                this._context.font = "bold " + Math.floor(30 * this._options.resizeValue) + "px Comic Sans MS";
+                this._context.fillStyle = 'white';
+                this._context.textAlign = "center";
+                this._context.fillText (
+                    sprite.caption, 
+                    sprite.position.x + sprite.width / 2, 
+                    sprite.position.y + sprite.height / 2 + 10 * this._options.resizeValue
+                );
+            }
         }
     }
 
@@ -68,23 +69,25 @@ class Renderer {
     //     this._context.fillText(position.name, position.point.x + this._options.cardDimensions.w / 2, position.point.y + this._options.cardDimensions.h / 2);
     // }
 
-    button() {
-        this.render(this._data.button.image, this._options.buttonPosition, this._options.buttonSize, this._options.buttonSize);
-        this._context.font = "bold " + Math.floor(30 * this._options.resizeValue) + "px Comic Sans MS";
-        this._context.fillStyle = 'white';
-        this._context.textAlign = "center";
-        this._context.fillText("Hit", this._options.buttonPosition.x + this._options.buttonSize / 2, this._options.buttonPosition.y + this._options.buttonSize / 2 + 10);
+    buttons() {
+        this._data.buttons.forEach(function(button) { this.sprite(button); });
+
+        // this.render(this._data.button.image, this._options.buttonPosition, this._options.buttonSize, this._options.buttonSize);
+        // this._context.font = "bold " + Math.floor(30 * this._options.resizeValue) + "px Comic Sans MS";
+        // this._context.fillStyle = 'white';
+        // this._context.textAlign = "center";
+        // this._context.fillText("Hit", this._options.buttonPosition.x + this._options.buttonSize / 2, this._options.buttonPosition.y + this._options.buttonSize / 2 + 10);
 
     }
 
     field() {
         this.heading();
         this.render(this._data.deck.image, this._data.deck.currentPosition, this._options.cardDimensions.w, this._options.cardDimensions.h);
-        this.button();  
+        this.buttons();  
 
-        for (let i = 0; i < this._data.positions.length; i += 1) {
-            this.position(this._data.positions[i]);
-        }
+        // for (let i = 0; i < this._data.positions.length; i += 1) {
+        //     this.position(this._data.positions[i]);
+        // }
         for (let i = 0; i < this._data.cards.length; i += 1) {
             if (!this._data.cards[i].deleted) {
                 this.render(this._data.cards[i].image, this._data.cards[i].currentPosition, this._options.cardDimensions.w, this._options.cardDimensions.h);

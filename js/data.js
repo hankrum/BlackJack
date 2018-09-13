@@ -9,7 +9,7 @@ class Data {
         this._deck = new Deck(options.deckPosition, options);
 
         this._options = options;
-        this._buttonCaptions = ["Deal", "Hit", "Stand", "Double", "Split"]; // TODO: move in options
+        this._buttons = this.setButtons(); // TODO: move in options
         // this._positions = [];
         // this._button = new Button(this._options.buttonPosition, this._options.buttonSize, this._options);
         // this._setPositions();
@@ -58,7 +58,7 @@ class Data {
     setButtons() {
         const buttons = [];
 
-        buttons = this._options.buttonDetails.map(function(details){ return new Button(details); });
+        buttons = this._options.buttonsDetails.map(function(details){ return new Button(details); });
 
         return buttons;
     }
@@ -66,7 +66,7 @@ class Data {
     setChips() {
         const chips = [];
 
-        chips = this._options.chipDetails.map(function(details){ return new Chip(details)});
+        chips = this._options.chipsDetails.map(function(details){ return new Chip(details); });
 
         return chips;
     }
