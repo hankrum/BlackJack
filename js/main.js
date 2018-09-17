@@ -34,7 +34,7 @@ debugger;
     canvas.addEventListener('click', function (e) {
         data.chips.forEach(function(chip) {
             if (chip.hasClick()) {
-                
+                data.increaseBid(chip.price);
             }
         });
 
