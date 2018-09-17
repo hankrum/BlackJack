@@ -24,6 +24,10 @@ class Sprite {
         return this._visible;
     }
 
+    set visible(value) {
+        this._visible = value;
+    }
+
     get caption() {
         return this._caption;
     }

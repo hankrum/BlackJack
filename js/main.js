@@ -50,12 +50,14 @@ debugger;
                     data.bidReset();
                 }
                 else if (buttonName === "Deal") {
+                    debugger;
+                    button.visible = false;
                     data.resetPlayerCards();
                     for (let i = 0; i < 2; i++) {
                         const cn = Math.floor(Math.random() * data.deck.cards.length);
                         data.deck.takeOutCard(cn);
                         const destination = new Point(
-                            options.firstPlayerCardPosition.x + i * (options.baseCardDimensions.w + 20*options.resizeValue), 
+                            options.firstPlayerCardPosition.x + i * (options.cardDimensions.w + 20*options.resizeValue), 
                             options.firstPlayerCardPosition.y
                         );
                         const card = new Card(
@@ -63,6 +65,7 @@ debugger;
                             destination, 
                             options
                         );
+                        card.setNewMoveData();
                         data.playerCards.push(card);
                     }
                 }

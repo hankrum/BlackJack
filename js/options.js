@@ -39,7 +39,7 @@ class Options {
 
         this.firstPlayerCardPosition = {
             x: canvasDimensions.w * 0.1,
-            y: canvasDimensions.h * 0.7
+            y: canvasDimensions.h * 0.3
         }
 
         this.playerCardOffset = 0.1;

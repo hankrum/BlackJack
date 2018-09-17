@@ -17,8 +17,8 @@ class Card extends Sprite {
         this._destination = destination;
         this._moveData = 1;
         this._reachedEndPoint = false;
-        this._width = options.baseCardDimensions.w;
-        this._height = options.baseCardDimensions.h;
+        this._width = options.cardDimensions.w;
+        this._height = options.cardDimensions.h;
 
         this.setNewMoveData();
         //this._deleted = false;
@@ -63,10 +63,9 @@ class Card extends Sprite {
     }
 
     move() {           //calculates the next movement step
-        const outEvent = new CustomEvent("cardOut");
-
-        const speed = this._speed >= 0 ? this._speed : 1;
-        this._reachedEndPoint = Math.abs(this._position.x - this._destination.x) < speed;
+        //const outEvent = new CustomEvent("cardOut");
+        const speed = this._speed || 1;
+        this._reachedEndPoint = this._reachedEndPoint || Math.abs(this._position.x - this._destination.x) < speed;
 
         if (! this._reachedEndPoint) {
         //     this._startPoint = this._endPoint;
