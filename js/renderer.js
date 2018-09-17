@@ -62,7 +62,8 @@ class Renderer {
     }
 
     spriteArray(sprites) {
-        sprites.forEach(function(sprite) { this.sprite(sprite); });
+        const _this = this;
+        sprites.forEach(function(sprite) { _this.sprite(sprite); });
     }
 
     // position(position) {
@@ -74,7 +75,8 @@ class Renderer {
     // }
 
     buttons() {
-        this._data.buttons.forEach(function(button) { this.sprite(button); });
+        const _this = this;
+        this._data.buttons.forEach(function(button) { _this.sprite(button); });
 
         // this.render(this._data.button.image, this._options.buttonPosition, this._options.buttonSize, this._options.buttonSize);
         // this._context.font = "bold " + Math.floor(30 * this._options.resizeValue) + "px Comic Sans MS";
@@ -84,19 +86,45 @@ class Renderer {
 
     }
 
+    chips() {
+        const _this = this;
+        this._data.chips.forEach(function(chip) { _this.sprite(chip); });
+    }
+
+    cards() {
+        const _this = this;
+        this._data.cards.forEach(
+            function(card) { 
+                _this.sprite(card); 
+                card.move();
+            }
+        );
+    }
+
     field() {
         this.heading();
-        this.render(this._data.deck.image, this._data.deck.currentPosition, this._options.cardDimensions.w, this._options.cardDimensions.h);
-        this.buttons();  
+        this.sprite(
+            {
+                image: this._data.deck.image, 
+                position: this._data.deck.currentPosition, 
+                width: this._options.cardDimensions.w, 
+                height: this._options.cardDimensions.h,
+                visible: true,
+            }
+        );
+        this.chips();
+        this.buttons(); 
+        this.cards();
+
 
         // for (let i = 0; i < this._data.positions.length; i += 1) {
         //     this.position(this._data.positions[i]);
         // }
-        for (let i = 0; i < this._data.cards.length; i += 1) {
-            if (!this._data.cards[i].deleted) {
-                this.render(this._data.cards[i].image, this._data.cards[i].currentPosition, this._options.cardDimensions.w, this._options.cardDimensions.h);
-                this._data.cards[i].move();
-            }
-        }
+        // for (let i = 0; i < this._data.cards.length; i += 1) {
+        //     if (!this._data.cards[i].deleted) {
+        //         this.render(this._data.cards[i].image, this._data.cards[i].currentPosition, this._options.cardDimensions.w, this._options.cardDimensions.h);
+        //         this._data.cards[i].move();
+        //     }
+        // }
     }
 }

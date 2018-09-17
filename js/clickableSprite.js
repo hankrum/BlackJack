@@ -1,9 +1,9 @@
 class ClickableSprite extends Sprite {
-    constructor(clickImage, details) {
+    constructor(details) {
         super(details);
-        this._clickImage = clickImage;
+        this._clickImage = details.clickImage;
         this._clicked = false;
-        this._caption = caption;
+        this._caption = details.caption;
     }
 
    set clicked(value) {

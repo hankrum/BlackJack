@@ -1,5 +1,6 @@
 class Options {
     constructor() {
+        const _this = this;
         const baseScreenResolution = {
             w: 1460,        
             h: 700      
@@ -97,7 +98,7 @@ class Options {
             },
         ];
 
-        this.buttonDetails.forEach(function(x){ x.width = this._buttonSize });
+        this.buttonsDetails.forEach(function(x){ x.width = _this._buttonSize });
 
         this._firstChipPosition = new Point(canvasDimensions.w * 0.1, canvasDimensions.h * 0.8);
         this._chipSize = 80 * this.resizeValue;
@@ -108,7 +109,7 @@ class Options {
         this.chipsDetails = this._chipCaptions.map(function(chipCaption, i) {
             return{
                 caption: chipCaption,
-                position: new Point (this._firstChipPosition.x + i * this._chipOffset, this._firstChipPosition.y),
+                position: new Point (_this._firstChipPosition.x + i * _this._chipOffset, _this._firstChipPosition.y),
             };
         });
 

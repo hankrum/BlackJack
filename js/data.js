@@ -9,7 +9,8 @@ class Data {
         this._deck = new Deck(options.deckPosition, options);
 
         this._options = options;
-        this._buttons = this.setButtons(); // TODO: move in options
+        this._buttons = this.setButtons(); 
+        this._chips = this.setChips();
         // this._positions = [];
         // this._button = new Button(this._options.buttonPosition, this._options.buttonSize, this._options);
         // this._setPositions();
@@ -36,6 +37,14 @@ class Data {
         return this._buttons;
     }
 
+    get chips() {
+        return this._buttons;
+    }
+
+    get cards() {
+        return this._playerCards.concat(this._dealerCards);
+    }
+
     setFirstCards() {       //initial cards for positions 1, 2, 3, A and B before pressing cards and button
         const cards = [];
         for (let i = 0; i < this._positions.length; i += 1) {
@@ -56,17 +65,13 @@ class Data {
     }
 
     setButtons() {
-        const buttons = [];
-
-        buttons = this._options.buttonsDetails.map(function(details){ return new Button(details); });
+        const buttons = this._options.buttonsDetails.map(function(details){ return new Button(details); });
 
         return buttons;
     }
 
     setChips() {
-        const chips = [];
-
-        chips = this._options.chipsDetails.map(function(details){ return new Chip(details); });
+        const chips = this._options.chipsDetails.map(function(details){ return new Chip(details); });
 
         return chips;
     }
