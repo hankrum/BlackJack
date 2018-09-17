@@ -117,6 +117,8 @@ class Options {
         this.headingText = "BLACKJACK";
         this.headingPosition = new Point(this.canvasDimensions.w / 2, 70 * this.resizeValue);
 
+        this.bidPosition = new Point(this.canvasDimensions.w * 0.1 , 80 * this.resizeValue);
+
         // this.outPoint = {
         //     x: canvasDimensions.w * 0.3,
         //     y: canvasDimensions.h

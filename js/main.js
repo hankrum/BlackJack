@@ -23,17 +23,18 @@ debugger;
 
     }, false);
 
-    canvas.addEventListener('mouseup', function (e) {
-        data.button.togglePressed();
-    });
+    // canvas.addEventListener('mouseup', function (e) {
+    //     data.button.togglePressed();
+    // });
 
-    canvas.addEventListener('mousedown', function (e) {
-        data.button.togglePressed();
-    });
+    // canvas.addEventListener('mousedown', function (e) {
+    //     data.button.togglePressed();
+    // });
 
     canvas.addEventListener('click', function (e) {
         data.chips.forEach(function(chip) {
-            if (chip.hasClick()) {
+            const clickPoint = new Point(e.clientX, e.clientY);
+            if (chip.hasClick(clickPoint)) {
                 data.increaseBid(chip.price);
             }
         });

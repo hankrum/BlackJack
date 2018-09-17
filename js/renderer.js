@@ -7,7 +7,11 @@ class Renderer {
     }
 
     heading() {           //Prints the heading
-        this.text(this._options.headingText, { size: 30, position: this._options.headingPosition })
+        this.text(this._options.headingText, { size: 30, position: this._options.headingPosition });
+    }
+
+    bid() {
+        this.text("Your bid: $" + this._data.bid, { size: 20, position: this._options.bidPosition });
     }
 
     // delimiter() {
@@ -111,6 +115,7 @@ class Renderer {
 
     field() {
         this.heading();
+        this.bid();
         this.deck();
         // this.sprite(
         //     {

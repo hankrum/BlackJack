@@ -21,7 +21,7 @@ class ClickableSprite extends Sprite {
     hasClick(positionToTest) {       //tests whether the mouse click is there
         if (this._visible){
             const buttonCenter 
-                = point(
+                = new Point(
                     this.position.x + this.width / 2, 
                     this.position.y + this.width / 2
                 );
