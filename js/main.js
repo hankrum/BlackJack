@@ -12,6 +12,9 @@ debugger;
     const data = new Data(options);
     const renderer = new Renderer(context, options, data);
 
+    const dealButton = data.buttons.find(function(button) { return button.caption === "Deal"; });
+    dealButton.visible = true;
+
     renderer.field();
 
     document.addEventListener('cardOut', function (e) {

@@ -35,4 +35,8 @@ class Sprite {
     get height() {
         return this._height;
     }
+
+    set image(value) {
+        this._image = value;
+    }
 }

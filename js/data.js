@@ -1,16 +1,27 @@
 class Data {
     constructor(options) {
+        const MINBID = 5;
+
         this._playerCards = [];
         this._dealerCards = [];
         this._buttons = [];
         this._chips = [];
 
-        this._bid = 0;
-        this._deck = new Deck(options.deckPosition, options);
-
         this._options = options;
+
+        this._bid = MINBID;
+        this._deck = new Deck(
+            {
+                position: this._options.deckPosition, 
+                width: this._options.cardDimensions.w, 
+                height: this._options.cardDimensions.h,
+                visible: true,
+            }
+        );
+
         this._buttons = this.setButtons(); 
         this._chips = this.setChips();
+        // this._setImages();
         // this._positions = [];
         // this._button = new Button(this._options.buttonPosition, this._options.buttonSize, this._options);
         // this._setPositions();
@@ -21,7 +32,7 @@ class Data {
         return this._playerCards;
     }
 
-    get playerCards() {
+    get dealerCards() {
         return this._playerCards;
     }
 
@@ -38,11 +49,26 @@ class Data {
     }
 
     get chips() {
-        return this._buttons;
+        return this._chips;
     }
 
     get cards() {
         return this._playerCards.concat(this._dealerCards);
+    }
+
+    get bid() {
+        return this._bid;
+    }
+
+    increaseBid(value) {
+        this._bid += value;
+    }
+
+    decreaseBid(value) {
+        const newBid = this._bid - value;
+        if (newBid >= MINBID) {
+            this._bid = newBid;
+        }
     }
 
     setFirstCards() {       //initial cards for positions 1, 2, 3, A and B before pressing cards and button
@@ -75,6 +101,12 @@ class Data {
 
         return chips;
     }
+
+    // _setImages() {
+    //     // debugger;
+    //     this._deck.image = ImageProvider.loadImage('./images/card-back.png', this._options.cardDimensions.w, this._options.cardDimensions.h);
+        
+    // }
 
     // _setPositions() {        //creates positions 1, 2, 3, A and B
     //     const names = ["1", "2", "3", "A", "B"];

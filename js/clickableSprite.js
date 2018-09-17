@@ -19,17 +19,24 @@ class ClickableSprite extends Sprite {
     }
 
     hasClick(positionToTest) {       //tests whether the mouse click is there
-        const buttonCenter 
-            = point(
-                this.position.x + this.width / 2, 
-                this.position.y + this.width / 2
-            );
-        const x = Math.abs(buttonCenter.x - positionToTest.x);
-        const y = Math.abs(buttonCenter.y - positionToTest.y);
-        const distancefromCenter = Math.sqrt(x * x + y * y);
+        if (this._visible){
+            const buttonCenter 
+                = point(
+                    this.position.x + this.width / 2, 
+                    this.position.y + this.width / 2
+                );
+            const x = Math.abs(buttonCenter.x - positionToTest.x);
+            const y = Math.abs(buttonCenter.y - positionToTest.y);
+            const distancefromCenter = Math.sqrt(x * x + y * y);
 
-        const isWithinButton = distancefromCenter <= this.width / 2;
-        return isWithinButton;
+            const isWithinButton = distancefromCenter <= this.width / 2;
+
+            return isWithinButton;
+        }
+        else {
+            return false;
+        }
+
     }
 
     toggleClicked() {

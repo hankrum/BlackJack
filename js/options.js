@@ -98,7 +98,7 @@ class Options {
             },
         ];
 
-        this.buttonsDetails.forEach(function(x){ x.width = _this._buttonSize });
+        this.buttonsDetails.forEach(function(detail){ detail.width = _this._buttonSize });
 
         this._firstChipPosition = new Point(canvasDimensions.w * 0.1, canvasDimensions.h * 0.8);
         this._chipSize = 80 * this.resizeValue;
@@ -112,6 +112,7 @@ class Options {
                 position: new Point (_this._firstChipPosition.x + i * _this._chipOffset, _this._firstChipPosition.y),
             };
         });
+        this.chipsDetails.forEach(function(detail){ detail.width = _this._chipSize });
 
         this.headingText = "BLACKJACK";
         this.headingPosition = new Point(this.canvasDimensions.w / 2, 70 * this.resizeValue);

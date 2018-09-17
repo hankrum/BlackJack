@@ -1,8 +1,10 @@
 class Chip extends ClickableSprite {
-    constructor(caption, clickImage, image, position, width) {
-        super(caption, clickImage, image, position, width);
+    constructor(details) {
+        super(details);
 
         this._price = Number(this._caption);
+        this._image = ImageProvider.loadImage('./images/chip.png', details.width);
+        this._visible = true;
     }
 
     get price() {

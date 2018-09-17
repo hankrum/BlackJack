@@ -88,7 +88,11 @@ class Renderer {
 
     chips() {
         const _this = this;
-        this._data.chips.forEach(function(chip) { _this.sprite(chip); });
+        this._data.chips.forEach(
+            function(chip) { 
+                _this.sprite(chip); 
+            }
+        );
     }
 
     cards() {
@@ -101,17 +105,22 @@ class Renderer {
         );
     }
 
+    deck() {
+        this.sprite(this._data.deck);
+    }
+
     field() {
         this.heading();
-        this.sprite(
-            {
-                image: this._data.deck.image, 
-                position: this._data.deck.currentPosition, 
-                width: this._options.cardDimensions.w, 
-                height: this._options.cardDimensions.h,
-                visible: true,
-            }
-        );
+        this.deck();
+        // this.sprite(
+        //     {
+        //         image: loadImage('./images/card-back.png', this._options.cardDimensions.w, this._options.cardDimensions.h), 
+        //         position: this._options.deckPosition, 
+        //         width: this._options.cardDimensions.w, 
+        //         height: this._options.cardDimensions.h,
+        //         visible: true,
+        //     }
+        // );
         this.chips();
         this.buttons(); 
         this.cards();
