@@ -17,11 +17,11 @@ debugger;
 
     renderer.field();
 
-    document.addEventListener('cardOut', function (e) {
-        const i = data.cards.findIndex(x => x.cardOut && x.reachedEndPoint);
-        data.cards[i].deleted = true;
+    // document.addEventListener('cardOut', function (e) {
+    //     const i = data.cards.findIndex(x => x.cardOut && x.reachedEndPoint);
+    //     data.cards[i].deleted = true;
 
-    }, false);
+    // }, false);
 
     // canvas.addEventListener('mouseup', function (e) {
     //     data.button.togglePressed();
@@ -32,10 +32,23 @@ debugger;
     // });
 
     canvas.addEventListener('click', function (e) {
+        const clickPoint = new Point(e.clientX, e.clientY);
+
         data.chips.forEach(function(chip) {
-            const clickPoint = new Point(e.clientX, e.clientY);
             if (chip.hasClick(clickPoint)) {
                 data.changeBid(chip.price);
+                data.changePlayerFunds(-chip.price);
+            }
+        });
+
+        data.buttons.forEach(function(button, i) {
+            if (button.hasClick(clickPoint)){
+                const buttonName = data.buttons[i].caption;
+
+                if (buttonName === "Clear") {
+                    data.changePlayerFunds(data.bid - options.minBid);
+                    data.bidReset();
+                }
             }
         });
 

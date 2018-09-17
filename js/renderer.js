@@ -14,6 +14,10 @@ class Renderer {
         this.text("Your bid: $" + this._data.bid, { size: 20, position: this._options.bidPosition });
     }
 
+    playerFunds() {
+        this.text("$" + this._data.playerFunds, { size: 20, position: this._options.playerFundsPosition })
+    }
+
     // delimiter() {
     //     const fontString = Math.floor(30 * this._options.resizeValue) + "pt Comic Sans MS";
     //     const text = "Virtual Online Casino";
@@ -53,7 +57,7 @@ class Renderer {
                 sprite.height
             );
             if (sprite.caption) {
-                this._context.font = "bold " + Math.floor(30 * this._options.resizeValue) + "px Comic Sans MS";
+                this._context.font = "bold " + Math.floor(20 * this._options.resizeValue) + "px Comic Sans MS";
                 this._context.fillStyle = 'white';
                 this._context.textAlign = "center";
                 this._context.fillText (
@@ -116,6 +120,7 @@ class Renderer {
     field() {
         this.heading();
         this.bid();
+        this.playerFunds();
         this.deck();
         // this.sprite(
         //     {

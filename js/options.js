@@ -62,11 +62,12 @@ class Options {
                 visible: true,
             },
             {
-                caption: "Clear Bid",
+                caption: "Clear",
                 position: new Point (
-                    canvasDimensions.w * 0.1,
-                    canvasDimensions.h * 0.1
+                    canvasDimensions.w * 0.05,
+                    canvasDimensions.h * 0.15
                 ),
+                width: 60 * resizeValue,
                 visible: true,
             },
             {
@@ -106,9 +107,9 @@ class Options {
             },
         ];
 
-        this.buttonsDetails.forEach(function(detail){ detail.width = _this._buttonSize });
+        this.buttonsDetails.forEach(function(detail){ detail.width = detail.width || _this._buttonSize });
 
-        this._firstChipPosition = new Point(canvasDimensions.w * 0.1, canvasDimensions.h * 0.8);
+        this._firstChipPosition = new Point(canvasDimensions.w * 0.05, canvasDimensions.h * 0.8);
         this._chipSize = 80 * this.resizeValue;
         this._chipOffset = this._chipSize + 20 * this.resizeValue;
 
@@ -126,6 +127,10 @@ class Options {
         this.headingPosition = new Point(this.canvasDimensions.w / 2, 70 * this.resizeValue);
 
         this.bidPosition = new Point(this.canvasDimensions.w * 0.1 , 80 * this.resizeValue);
+
+        this.minBid = 5;
+        this.playerFunds = 2495;
+        this.playerFundsPosition = new Point(canvasDimensions.w * 0.07, canvasDimensions.h * 0.7);
 
         // this.outPoint = {
         //     x: canvasDimensions.w * 0.3,

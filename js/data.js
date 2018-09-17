@@ -1,6 +1,5 @@
 class Data {
     constructor(options) {
-        const MINBID = 5;
 
         this._playerCards = [];
         this._dealerCards = [];
@@ -9,7 +8,7 @@ class Data {
 
         this._options = options;
 
-        this._bid = MINBID;
+        this._bid = this._options.minBid;
         this._deck = new Deck(
             {
                 position: this._options.deckPosition, 
@@ -21,6 +20,8 @@ class Data {
 
         this._buttons = this.setButtons(); 
         this._chips = this.setChips();
+
+        this._playerFunds = this._options.playerFunds;
         // this._setImages();
         // this._positions = [];
         // this._button = new Button(this._options.buttonPosition, this._options.buttonSize, this._options);
@@ -60,10 +61,25 @@ class Data {
         return this._bid;
     }
 
+    get playerFunds() {
+        return this._playerFunds;
+    }
+
     changeBid(value) {
-        const newBid = this._bid + value;
-        if (newBid >= MINBID) {
-            this._bid = newBid;
+        const sufficientFunds = value <= this._playerFunds;
+        if (sufficientFunds) {
+            this._bid += value;
+        }
+    }
+
+    bidReset() {
+        this._bid = this._options.minBid;
+    }
+
+    changePlayerFunds(value) {
+        const newFunds = this._playerFunds + value;
+        if (newFunds >= 0) {
+            this._playerFunds = newFunds;
         }
     }
 
