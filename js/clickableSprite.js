@@ -31,4 +31,8 @@ class ClickableSprite extends Sprite {
         const isWithinButton = distancefromCenter <= this.width / 2;
         return isWithinButton;
     }
+
+    toggleClicked() {
+        this.clicked = !this.clicked;
+    }
 }

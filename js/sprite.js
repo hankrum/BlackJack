@@ -16,6 +16,10 @@ class Sprite {
         return this._image;
     }
 
+    set image(image) {
+        this._image = image;
+    }
+
     get visible() {
         return this._visible;
     }

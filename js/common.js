@@ -23,7 +23,7 @@ function loadImage(url, width, height) {
     img.src = url;
     img.onload = function () {
         img.width = width;
-        img.height = height;
+        img.height = height || width;
     }
     return img;
 }

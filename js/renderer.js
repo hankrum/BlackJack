@@ -61,6 +61,10 @@ class Renderer {
         }
     }
 
+    spriteArray(sprites) {
+        sprites.forEach(function(sprite) { this.sprite(sprite); });
+    }
+
     // position(position) {
     //     this._context.strokeRect(position.point.x + 3, position.point.y + 3, this._options.cardDimensions.w - 6, this._options.cardDimensions.h - 6);
     //     this._context.font = "bold " + Math.floor(30 * this._options.resizeValue) + "pt Comic Sans MS";

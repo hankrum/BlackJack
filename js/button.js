@@ -1,10 +1,10 @@
 class Button extends ClickableSprite {
-    constructor(caption, clickImage, image, position, width) {
-        super(caption, clickImage, image, position, width);
+    constructor(details) {
+        super(details);
 
         this._visible = false;
-        // this._redImage = loadImage('./images/red-button.png', width, width);
-        // this._blueImage = loadImage('./images/blue-button.png', width, width);
+        this._image = loadImage('./images/red-button.png', width);
+        this._clickImage = loadImage('./images/blue-button.png', width);
         //this._pressed = false;
         //this._options = options;
         //this._caption = caption;
@@ -13,8 +13,4 @@ class Button extends ClickableSprite {
     // get deck() {
     //     return this._deck;
     // }
-
-    toggleClicked() {
-        this.clicked = !this.clicked;
-    }
 }
