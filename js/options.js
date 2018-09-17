@@ -34,7 +34,7 @@ class Options {
         };
         this.deckPosition = {
             x: canvasDimensions.w * 0.8,
-            y: canvasDimensions.h * 0.3
+            y: canvasDimensions.h * 0.1
         };
 
         this.firstPlayerCardPosition = {

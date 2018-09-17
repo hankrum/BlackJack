@@ -2,20 +2,27 @@ class Deck extends Sprite {
     constructor(details) {
         super(details);
 
-        this.image = ImageProvider.loadImage('./images/card-back.png', this.width, this.height);
-
-        // this._deck = [];
-        // this._cardImages = [];
-        // for (let i = 0; i < 51; i += 1) {
-        //     this._deck.push(i);
-        //     const image = loadImage(getCardFileName(i), options.cardDimensions.w, options.cardDimensions.h);
-        //     this._cardImages.push(image);
-        // }
+        this._image = ImageProvider.loadImage('./images/card-back.png', this.width, this.height);
+        this.resetCards();
     }
 
-    // get deck() {
-    //     return this._deck;
-    // }
+    get cards() {
+        return this._cards;
+    }
+
+    resetCards() {
+        this._cards = [];
+        for (let i = 0; i < 51; i += 1) {
+            this._cards.push(i);
+        }
+    }
+
+    takeOutCard(number) {
+        const index = this._cards.indexOf(number);
+        if (index >= 0) {
+            this._cards.splice(index, 1);
+        }
+    }
 
     // get image() {
     //     return this._image;

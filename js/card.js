@@ -2,16 +2,18 @@ class Card extends Sprite {
     constructor (
         number, 
         destination, 
-        endPoint, 
-        speed, 
-        details) {
+        options, 
+        // endPoint, 
+        // speed, 
+    ) {
 
-        super(details)
+        super({});
 
 
-        this._endPoint = endPoint;
+        // this._endPoint = endPoint;
         this._number = number;
-        this._speed = speed;
+        this._speed = options.speed;
+        this._position = options.deckPosition;
         this._destination = destination;
         this._moveData = 1;
         this._reachedEndPoint = false;
@@ -19,7 +21,9 @@ class Card extends Sprite {
         this._height = options.baseCardDimensions.h;
 
         this.setNewMoveData();
-        this._deleted = false;
+        //this._deleted = false;
+        const imageFileName = this.getCardFileName();
+        this._image = ImageProvider.loadImage(imageFileName, this.width, this.height);
     }
 
     get currentPosition() {
@@ -51,7 +55,7 @@ class Card extends Sprite {
     }
 
     setNewMoveData() {         //calculations for the movement of the cards
-        const a = (this._endPoint.y - this._currentPosition.y) / (this._currentPosition.x - this._endPoint.x);
+        const a = (this._destination.y - this._position.y) / (this._position.x - this._destination.x);
 
         this._moveData = a;
 
@@ -62,31 +66,31 @@ class Card extends Sprite {
         const outEvent = new CustomEvent("cardOut");
 
         const speed = this._speed >= 0 ? this._speed : 1;
-        this._reachedEndPoint = Math.abs(this._currentPosition.x - this._endPoint.x) < speed;
+        this._reachedEndPoint = Math.abs(this._position.x - this._destination.x) < speed;
 
-        if (this._reachedEndPoint) {
-            this._startPoint = this._endPoint;
-            this._currentPosition = this._endPoint;
-            if (this.cardOut) {
-                document.dispatchEvent(outEvent);
-            }
-        }
-        else {
-            this._currentPosition.x -= speed;
-            this._currentPosition.y = Number(this._currentPosition.y + speed * this._moveData);
+        if (! this._reachedEndPoint) {
+        //     this._startPoint = this._endPoint;
+        //     this._currentPosition = this._endPoint;
+        //     if (this.cardOut) {
+        //         document.dispatchEvent(outEvent);
+        //     }
+        // }
+        // else {
+            this._position.x -= speed;
+            this._position.y = Number(this._position.y + speed * this._moveData);
         }
 
         return this;
     }
 
-    sendCardOut(outPoint) {
-        this._endPoint = point(outPoint.x, outPoint.y);
-        this._positionDestination = -1;
-        this._reachedEndPoint = false;
-        this._cardOut = true;
+    // sendCardOut(outPoint) {
+    //     this._endPoint = point(outPoint.x, outPoint.y);
+    //     this._positionDestination = -1;
+    //     this._reachedEndPoint = false;
+    //     this._cardOut = true;
 
-        return this;
-    }
+    //     return this;
+    // }
 
     _getCardId() {
         const cardNames = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "jack", "queen", "king", "ace"];
