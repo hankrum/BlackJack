@@ -62,6 +62,14 @@ class Options {
                 visible: true,
             },
             {
+                caption: "Clear Bid",
+                position: new Point (
+                    canvasDimensions.w * 0.1,
+                    canvasDimensions.h * 0.1
+                ),
+                visible: true,
+            },
+            {
                 caption: "Hit",
                 position: new Point (
                     canvasDimensions.w * 0.7,

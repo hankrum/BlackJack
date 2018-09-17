@@ -35,7 +35,7 @@ debugger;
         data.chips.forEach(function(chip) {
             const clickPoint = new Point(e.clientX, e.clientY);
             if (chip.hasClick(clickPoint)) {
-                data.increaseBid(chip.price);
+                data.changeBid(chip.price);
             }
         });
 

@@ -60,12 +60,8 @@ class Data {
         return this._bid;
     }
 
-    increaseBid(value) {
-        this._bid += value;
-    }
-
-    decreaseBid(value) {
-        const newBid = this._bid - value;
+    changeBid(value) {
+        const newBid = this._bid + value;
         if (newBid >= MINBID) {
             this._bid = newBid;
         }
