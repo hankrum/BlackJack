@@ -24,6 +24,8 @@ class Card extends Sprite {
         //this._deleted = false;
         const imageFileName = this.getCardFileName();
         this._image = ImageProvider.loadImage(imageFileName, this.width, this.height);
+        this.visible = true;
+        this._caption = number;
     }
 
     get currentPosition() {
@@ -64,20 +66,22 @@ class Card extends Sprite {
 
     move() {           //calculates the next movement step
         //const outEvent = new CustomEvent("cardOut");
-        const speed = this._speed || 1;
-        this._reachedEndPoint = this._reachedEndPoint || Math.abs(this._position.x - this._destination.x) < speed;
-
-        if (! this._reachedEndPoint) {
-        //     this._startPoint = this._endPoint;
-        //     this._currentPosition = this._endPoint;
-        //     if (this.cardOut) {
-        //         document.dispatchEvent(outEvent);
-        //     }
-        // }
-        // else {
-            this._position.x -= speed;
-            this._position.y = Number(this._position.y + speed * this._moveData);
-        }
+        this.image.onload(function() {
+            const speed = this._speed || 1;
+            this._reachedEndPoint = this._reachedEndPoint || Math.abs(this._position.x - this._destination.x) < speed;
+    
+            if (! this._reachedEndPoint) {
+            //     this._startPoint = this._endPoint;
+            //     this._currentPosition = this._endPoint;
+            //     if (this.cardOut) {
+            //         document.dispatchEvent(outEvent);
+            //     }
+            // }
+            // else {
+                this._position.x -= speed;
+                this._position.y = Number(this._position.y + speed * this._moveData);
+            }
+        });
 
         return this;
     }

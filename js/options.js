@@ -24,7 +24,7 @@ class Options {
         };
 
         this.resizeValue = resizeValue;
-        this.speed = 20;
+        this.speed = 1;
         this.baseScreenResolution = baseScreenResolution;
         this.canvasDimensions = canvasDimensions;
         this.baseCardDimensions = baseCardDimensions;

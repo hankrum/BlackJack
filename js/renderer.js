@@ -105,12 +105,22 @@ class Renderer {
 
     cards() {
         const _this = this;
-        this._data.cards.forEach(
-            function(card) { 
-                _this.sprite(card); 
-                card.move();
-            }
-        );
+        // if (this._data.playerCards.length > 0) {
+        //     console.log(this._data.playerCards.length);
+        // }
+        for(let i=0; i < this._data.playerCards.length; i++) {
+            let card = this._data.playerCards[i];
+            _this.sprite(card); 
+            console.log(card.number);
+            console.log(card.image);
+            card.move();
+        }
+        // this._data.playerCards.forEach(
+        //     function(card) { 
+        //         _this.sprite(card); 
+        //         card.move();
+        //     }
+        // );
     }
 
     deck() {
