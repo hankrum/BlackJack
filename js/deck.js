@@ -2,7 +2,7 @@ class Deck extends Sprite {
     constructor(details) {
         super(details);
 
-        this._image = ImageProvider.loadImage('./images/card-back.png', this.width, this.height);
+        this._image = document.getElementById("card-back");//ImageProvider.loadImage('./images/card-back.png', this.width, this.height);
         this.resetCards();
     }
 

@@ -69,6 +69,37 @@ class Renderer {
         }
     }
 
+    card(card) {
+        this._context.shadowBlur = 20;
+        this._context.shadowColor = "black";
+        const cn = card.number;
+        const x = (cn % 13) * 167;
+        const y = Math.floor(cn / 13) * 243;
+        //debugger;
+        this._context.drawImage (
+            card.image, 
+            (cn % 13) * 167,
+            Math.floor(cn / 13) * 243,
+            167,
+            243,
+            card.position.x, 
+            card.position.y, 
+            card.width, 
+            card.height
+        );
+        if (card.caption) {
+            this._context.font = "bold " + Math.floor(20 * this._options.resizeValue) + "px Comic Sans MS";
+            this._context.fillStyle = 'white';
+            this._context.textAlign = "center";
+            this._context.fillText (
+                card.caption, 
+                card.position.x + card.width / 2, 
+                card.position.y + card.height / 2 + 10 * this._options.resizeValue
+            );
+        }
+
+    }
+
     spriteArray(sprites) {
         const _this = this;
         sprites.forEach(function(sprite) { _this.sprite(sprite); });
@@ -109,11 +140,9 @@ class Renderer {
         //     console.log(this._data.playerCards.length);
         // }
         for(let i=0; i < this._data.playerCards.length; i++) {
-            let card = this._data.playerCards[i];
-            _this.sprite(card); 
-            console.log(card.number);
-            console.log(card.image);
-            card.move();
+            debugger;
+            _this.card(_this._data.playerCards[i]); 
+            _this._data.playerCards[i].move();
         }
         // this._data.playerCards.forEach(
         //     function(card) { 
@@ -131,7 +160,6 @@ class Renderer {
         this.heading();
         this.bid();
         this.playerFunds();
-        this.deck();
         // this.sprite(
         //     {
         //         image: loadImage('./images/card-back.png', this._options.cardDimensions.w, this._options.cardDimensions.h), 
@@ -144,6 +172,7 @@ class Renderer {
         this.chips();
         this.buttons(); 
         this.cards();
+        this.deck();
 
 
         // for (let i = 0; i < this._data.positions.length; i += 1) {

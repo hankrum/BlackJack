@@ -50,7 +50,6 @@ debugger;
                     data.bidReset();
                 }
                 else if (buttonName === "Deal") {
-                    debugger;
                     button.visible = false;
                     data.resetPlayerCards();
                     for (let i = 0; i < 2; i++) {
@@ -60,7 +59,7 @@ debugger;
                             options.firstPlayerCardPosition.x + i * (options.cardDimensions.w + 20*options.resizeValue), 
                             options.firstPlayerCardPosition.y
                         );
-                        const card = new Card(
+                        let card = new Card(
                             cn, 
                             destination, 
                             options
@@ -69,6 +68,7 @@ debugger;
                         data.playerCards.push(card);
                     }
                 }
+                    debugger;
             }
         });
 
