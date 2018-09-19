@@ -13,8 +13,8 @@ class Card extends Sprite {
         // this._endPoint = endPoint;
         this._number = number;
         this._speed = options.speed;
-        this._position = options.deckPosition;
         this._destination = destination;
+        this._position = destination; //options.deckPosition;
         this._moveData = 1;
         this._reachedEndPoint = false;
         this._width = options.cardDimensions.w;

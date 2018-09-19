@@ -57,15 +57,16 @@ debugger;
                         const cn = data.deck.cards[cardPosition];
                         data.deck.takeOutCard(cn);
                         const destination = new Point(
-                            options.firstPlayerCardPosition.x + i * (options.cardDimensions.w + 20*options.resizeValue), 
-                            options.firstPlayerCardPosition.y
+                            options.firstPlayerCardPosition.x + 2 * i * (options.cardDimensions.w + 20*options.resizeValue), 
+                            options.firstPlayerCardPosition.y 
                         );
                         let card = new Card(
                             cn, 
                             destination, 
-                            options
+                            options, 
+                            { position: destination }
                         );
-                        card.setNewMoveData();
+                        //card.setNewMoveData();
                         data.playerCards.push(card);
                     }
                 }

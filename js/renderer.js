@@ -69,34 +69,34 @@ class Renderer {
         }
     }
 
-    card(card) {
+    card(cardp) {
         this._context.shadowBlur = 20;
         this._context.shadowColor = "black";
-        const cn = card.number;
+        const cn = cardp.number;
         const x = (cn % 13) * 167;
         const y = Math.floor(cn / 13) * 243;
         //debugger;
         this._context.drawImage (
-            card.image, 
-            (cn % 13) * 167,
-            Math.floor(cn / 13) * 243,
-            167,
+            cardp.image, 
+            (cn % 13) * 167.5 + 1,
+            Math.floor(cn / 13) * 243 + 1,
+            166,
             243,
-            card.position.x, 
-            card.position.y, 
-            card.width, 
-            card.height
+            cardp.position.x, 
+            cardp.position.y, 
+            cardp.width, 
+            cardp.height
         );
-        if (card.caption) {
-            this._context.font = "bold " + Math.floor(20 * this._options.resizeValue) + "px Comic Sans MS";
-            this._context.fillStyle = 'white';
-            this._context.textAlign = "center";
-            this._context.fillText (
-                card.caption, 
-                card.position.x + card.width / 2, 
-                card.position.y + card.height / 2 + 10 * this._options.resizeValue
-            );
-        }
+        // if (cardp.caption) {
+        //     this._context.font = "bold " + Math.floor(20 * this._options.resizeValue) + "px Comic Sans MS";
+        //     this._context.fillStyle = 'white';
+        //     this._context.textAlign = "center";
+        //     this._context.fillText (
+        //         cardp.caption, 
+        //         cardp.position.x + cardp.width / 2, 
+        //         cardp.position.y + cardp.height / 2 + 10 * this._options.resizeValue
+        //     );
+        // }
 
     }
 
@@ -140,9 +140,11 @@ class Renderer {
         //     console.log(this._data.playerCards.length);
         // }
         for(let i=0; i < this._data.playerCards.length; i++) {
-            debugger;
+            // debugger;
             _this.card(_this._data.playerCards[i]); 
-            _this._data.playerCards[i].move();
+            // _this._data.playerCards[i].move();
+            if (!_this._data.playerCards[i].reachedEndPoint)
+            console.log(i+ " - x: " + _this._data.playerCards[i].position.x + ", y: " + _this._data.playerCards[i].position.y);
         }
         // this._data.playerCards.forEach(
         //     function(card) { 
@@ -158,6 +160,7 @@ class Renderer {
 
     field() {
         this.heading();
+        this.deck();
         this.bid();
         this.playerFunds();
         // this.sprite(
@@ -169,10 +172,9 @@ class Renderer {
         //         visible: true,
         //     }
         // );
-        this.chips();
+        // this.chips();
         this.buttons(); 
         this.cards();
-        this.deck();
 
 
         // for (let i = 0; i < this._data.positions.length; i += 1) {
