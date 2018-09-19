@@ -53,7 +53,8 @@ debugger;
                     button.visible = false;
                     data.resetPlayerCards();
                     for (let i = 0; i < 2; i++) {
-                        const cn = Math.floor(Math.random() * data.deck.cards.length);
+                        const cardPosition = Math.floor(Math.random() * data.deck.cards.length);
+                        const cn = data.deck.cards[cardPosition];
                         data.deck.takeOutCard(cn);
                         const destination = new Point(
                             options.firstPlayerCardPosition.x + i * (options.cardDimensions.w + 20*options.resizeValue), 
