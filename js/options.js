@@ -24,7 +24,7 @@ class Options {
         };
 
         this.resizeValue = resizeValue;
-        this.speed = 1;
+        this.speed = 10;
         this.baseScreenResolution = baseScreenResolution;
         this.canvasDimensions = canvasDimensions;
         this.baseCardDimensions = baseCardDimensions;
@@ -45,8 +45,8 @@ class Options {
         this.playerCardOffset = 0.1;
         
         this.firstDealerCardPosition = {
-            x: canvasDimensions.w * 0.1,
-            y: canvasDimensions.h * 0.2
+            x: canvasDimensions.w * 0.6,
+            y: canvasDimensions.h * 0.4
         }
 
         this.dealerCardOffset = 0.1;

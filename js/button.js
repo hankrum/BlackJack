@@ -3,8 +3,8 @@ class Button extends ClickableSprite {
         super(details);
 
         this._visible = details.visible || false;
-        this._image = ImageProvider.loadImage('./images/red-button.png', details.width);
-        this._clickImage = ImageProvider.loadImage('./images/blue-button.png', details.width);
+        this._image = document.getElementById("red-button"); // ImageProvider.loadImage('./images/red-button.png', details.width);
+        this._clickImage = document.getElementById("blue-button"); // ImageProvider.loadImage('./images/blue-button.png', details.width);
         //this._pressed = false;
         //this._options = options;
         //this._caption = caption;

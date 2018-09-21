@@ -87,17 +87,6 @@ class Renderer {
             cardp.width, 
             cardp.height
         );
-        // if (cardp.caption) {
-        //     this._context.font = "bold " + Math.floor(20 * this._options.resizeValue) + "px Comic Sans MS";
-        //     this._context.fillStyle = 'white';
-        //     this._context.textAlign = "center";
-        //     this._context.fillText (
-        //         cardp.caption, 
-        //         cardp.position.x + cardp.width / 2, 
-        //         cardp.position.y + cardp.height / 2 + 10 * this._options.resizeValue
-        //     );
-        // }
-
     }
 
     spriteArray(sprites) {
@@ -139,19 +128,25 @@ class Renderer {
         // if (this._data.playerCards.length > 0) {
         //     console.log(this._data.playerCards.length);
         // }
-        for(let i=0; i < this._data.playerCards.length; i++) {
-            // debugger;
-            _this.card(_this._data.playerCards[i]); 
-            // _this._data.playerCards[i].move();
-            if (!_this._data.playerCards[i].reachedEndPoint)
-            console.log(i+ " - x: " + _this._data.playerCards[i].position.x + ", y: " + _this._data.playerCards[i].position.y);
-        }
-        // this._data.playerCards.forEach(
-        //     function(card) { 
-        //         _this.sprite(card); 
-        //         card.move();
-        //     }
-        // );
+        // for(let i=0; i < this._data.playerCards.length; i++) {
+        //     _this.card(_this._data.playerCards[i]); 
+        //     _this._data.playerCards[i].move();
+        //     // if (!_this._data.playerCards[i].reachedEndPoint)
+        //     // console.log(i+ " - x: " + _this._data.playerCards[i].position.x + ", y: " + _this._data.playerCards[i].position.y);
+        // }
+        this._data.playerCards.forEach(
+            function(card) { 
+                _this.card(card); 
+                card.move();
+            }
+        );
+
+        this._data.dealerCards.forEach(
+            function(card) { 
+                _this.card(card); 
+                card.move();
+            }
+        );
     }
 
     deck() {
@@ -172,9 +167,9 @@ class Renderer {
         //         visible: true,
         //     }
         // );
-        // this.chips();
-        this.buttons(); 
+        this.chips();
         this.cards();
+        this.buttons(); 
 
 
         // for (let i = 0; i < this._data.positions.length; i += 1) {

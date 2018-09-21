@@ -69,6 +69,10 @@ class Data {
         this._playerCards = [];
     }
 
+    resetDealerCards() {
+        this._dealerCards = [];
+    }
+
     changeBid(value) {
         const sufficientFunds = value <= this._playerFunds;
         if (sufficientFunds) {

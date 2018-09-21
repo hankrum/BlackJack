@@ -6,7 +6,6 @@ window.addEventListener('load', function () {
 
     canvas.width = options.canvasDimensions.w;
     canvas.height = options.canvasDimensions.h;
-debugger;
     const context = canvas.getContext("2d");
 
     const data = new Data(options);
@@ -50,27 +49,45 @@ debugger;
                     data.bidReset();
                 }
                 else if (buttonName === "Deal") {
-                    button.visible = false;
+                    data.deck.resetCards();
+                    //button.visible = false;
                     data.resetPlayerCards();
                     for (let i = 0; i < 2; i++) {
-                        const cardPosition = Math.floor(Math.random() * data.deck.cards.length);
-                        const cn = data.deck.cards[cardPosition];
+                        const cardIndex = Math.floor(Math.random() * data.deck.cards.length);
+                        const cn = data.deck.cards[cardIndex];
                         data.deck.takeOutCard(cn);
                         const destination = new Point(
-                            options.firstPlayerCardPosition.x + 2 * i * (options.cardDimensions.w + 20*options.resizeValue), 
+                            options.firstPlayerCardPosition.x + i * (options.cardDimensions.w + 20*options.resizeValue), 
                             options.firstPlayerCardPosition.y 
                         );
-                        let card = new Card(
+                        const card = new Card(
                             cn, 
                             destination, 
-                            options, 
-                            { position: destination }
+                            options
+                            // { position: destination }
                         );
-                        //card.setNewMoveData();
+                        card.setNewMoveData();
                         data.playerCards.push(card);
                     }
+
+                    data.resetDealerCards();
+ 
+                    const cardIndex = Math.floor(Math.random() * data.deck.cards.length);
+                    const cn = data.deck.cards[cardIndex];
+                    data.deck.takeOutCard(cn);
+ 
+                    const destination = new Point(
+                        options.firstDealerCardPosition.x + i * (options.cardDimensions.w + 20*options.resizeValue), 
+                        options.firstDealerCardPosition.y 
+                    );
+                    const card = new Card(
+                        cn, 
+                        destination, 
+                        options
+                    );
+                    card.setNewMoveData();
+                    data.dealerCards.push(card);
                 }
-                    debugger;
             }
         });
 
