@@ -121,8 +121,9 @@ class Data {
         return buttonNames.indexOf(name);
     }
 
-    makeButtonVisible(name) {
-        
+    setButtonVisible(name, value) {
+        const index = this.getButtonIndexByName(name);
+        this._buttons[index].visible = value;
     }
 
     setChips() {

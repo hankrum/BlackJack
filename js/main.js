@@ -87,6 +87,16 @@ window.addEventListener('load', function () {
                     );
                     card.setNewMoveData();
                     data.dealerCards.push(card);
+
+                    // TODO: check for 21, loss and other buttons
+                    data.setButtonVisible("Hit", true);
+                    data.setButtonVisible("Stand", true);
+                }
+                else if (buttonName === "Hit") {
+                    
+                }
+                else if (buttonName === "Stand") {
+                    
                 }
             }
         });
