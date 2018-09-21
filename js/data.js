@@ -116,6 +116,15 @@ class Data {
         return buttons;
     }
 
+    getButtonIndexByName(name) {
+        const buttonNames = this._buttons.map(function(button) {return button.caption});
+        return buttonNames.indexOf(name);
+    }
+
+    makeButtonVisible(name) {
+        
+    }
+
     setChips() {
         const chips = this._options.chipsDetails.map(function(details){ return new Chip(details); });
 
