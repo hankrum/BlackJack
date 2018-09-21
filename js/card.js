@@ -23,10 +23,8 @@ class Card extends Sprite {
         this.setNewMoveData();
         //this._deleted = false;
         const imageFileName = this.getCardFileName();
-        console.log(imageFileName);
         this._image = document.getElementById("cards");
-        this.visible = true;
-        this._caption = this._number;
+        this._visible = true;
     }
 
     get number() {

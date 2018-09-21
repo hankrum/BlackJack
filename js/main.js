@@ -51,7 +51,9 @@ window.addEventListener('load', function () {
                 else if (buttonName === "Deal") {
                     data.deck.resetCards();
                     button.visible = false;
+                    data.chips.forEach(function(chip) { chip.visible = false; });
                     data.resetPlayerCards();
+                    
                     for (let i = 0; i < 2; i++) {
                         const cardIndex = Math.floor(Math.random() * data.deck.cards.length);
                         const cn = data.deck.cards[cardIndex];
