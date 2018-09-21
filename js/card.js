@@ -22,13 +22,30 @@ class Card extends Sprite {
 
         this.setNewMoveData();
         //this._deleted = false;
+
+        this._hidden = false;
+
         const imageFileName = this.getCardFileName();
+        console.log(imageFileName);
         this._image = document.getElementById("cards");
         this._visible = true;
+        this._score = number % 13 > 10 ? 10 : number % 13;
     }
 
     get number() {
         return this._number;
+    }
+    
+    get hidden() {
+        return this._hidden;
+    }
+
+    set hidden(value) {
+        this._hidden = value;
+    }
+
+    get image() {
+        return this._hidden ? document.getElementById("card-back") : this._image;
     }
 
     // get cardOut() {

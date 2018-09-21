@@ -12,7 +12,7 @@ class Deck extends Sprite {
 
     resetCards() {
         this._cards = [];
-        for (let i = 0; i < 51; i += 1) {
+        for (let i = 0; i < 52; i += 1) {
             this._cards.push(i);
         }
     }

@@ -76,6 +76,16 @@ class Renderer {
         const x = (cn % 13) * 167;
         const y = Math.floor(cn / 13) * 243;
         //debugger;
+        cardp._hidden 
+        ?
+        this._context.drawImage (
+            cardp.image, 
+            cardp.position.x, 
+            cardp.position.y, 
+            cardp.width, 
+            cardp.height
+        ) 
+        :
         this._context.drawImage (
             cardp.image, 
             (cn % 13) * 167.5 + 1,
@@ -89,10 +99,10 @@ class Renderer {
         );
     }
 
-    spriteArray(sprites) {
-        const _this = this;
-        sprites.forEach(function(sprite) { _this.sprite(sprite); });
-    }
+    // spriteArray(sprites) {
+    //     const _this = this;
+    //     sprites.forEach(function(sprite) { _this.sprite(sprite); });
+    // }
 
     // position(position) {
     //     this._context.strokeRect(position.point.x + 3, position.point.y + 3, this._options.cardDimensions.w - 6, this._options.cardDimensions.h - 6);

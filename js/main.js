@@ -53,7 +53,9 @@ window.addEventListener('load', function () {
                     button.visible = false;
                     data.chips.forEach(function(chip) { chip.visible = false; });
                     data.resetPlayerCards();
-                    
+
+                    debugger;
+
                     for (let i = 0; i < 2; i++) {
                         const cardIndex = Math.floor(Math.random() * data.deck.cards.length);
                         const cn = data.deck.cards[cardIndex];
@@ -74,22 +76,26 @@ window.addEventListener('load', function () {
 
                     data.resetDealerCards();
  
-                    const cardIndex = Math.floor(Math.random() * data.deck.cards.length);
-                    const cn = data.deck.cards[cardIndex];
-                    data.deck.takeOutCard(cn);
- 
-                    const destination = new Point(
-                        options.firstDealerCardPosition.x + i * (options.cardDimensions.w + 20*options.resizeValue), 
-                        options.firstDealerCardPosition.y 
-                    );
-                    const card = new Card(
-                        cn, 
-                        destination, 
-                        options
-                    );
-                    card.setNewMoveData();
-                    data.dealerCards.push(card);
+                    for (let i = 0; i < 2; i++) {
+                        const cardIndex = Math.floor(Math.random() * data.deck.cards.length);
+                        const cn = data.deck.cards[cardIndex];
+                        data.deck.takeOutCard(cn);
+    
+                        const destination = new Point(
+                            options.firstDealerCardPosition.x + i * (options.cardDimensions.w + 20*options.resizeValue), 
+                            options.firstDealerCardPosition.y 
+                        );
+                        const card = new Card(
+                            cn, 
+                            destination, 
+                            options
+                        );
+                        card.setNewMoveData();
+                        data.dealerCards.push(card);
+                    }
 
+                    data.dealerCards[1].hidden = true;
+                    debugger; 
                     // TODO: check for 21, loss and other buttons
                     data.setButtonVisible("Hit", true);
                     data.setButtonVisible("Stand", true);

@@ -34,7 +34,7 @@ class Data {
     }
 
     get dealerCards() {
-        return this._playerCards;
+        return this._dealerCards;
     }
 
     // get positions() {
@@ -53,9 +53,9 @@ class Data {
         return this._chips;
     }
 
-    get cards() {
-        return this._playerCards.concat(this._dealerCards);
-    }
+    // get cards() {
+    //     return this._playerCards.concat(this._dealerCards);
+    // }
 
     get bid() {
         return this._bid;
