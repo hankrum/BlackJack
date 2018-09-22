@@ -21,7 +21,7 @@ class Data {
         this._buttons = this.setButtons(); 
         this._chips = this.setChips();
 
-        this._playerFunds = this._options.playerFunds;
+        this._playerFunds = this._options.playerFunds; // TODO: load from browser memory
         // this._setImages();
         // this._positions = [];
         // this._button = new Button(this._options.buttonPosition, this._options.buttonSize, this._options);
@@ -63,6 +63,11 @@ class Data {
 
     get playerFunds() {
         return this._playerFunds;
+    }
+
+    nextGame() {
+        this.resetDealerCards();
+        this.resetDealerCards();
     }
 
     resetPlayerCards() {

@@ -9,7 +9,6 @@ class Card extends Sprite {
 
         super({});
 
-
         // this._endPoint = endPoint;
         this._number = number;
         this._speed = options.speed;

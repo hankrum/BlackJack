@@ -59,7 +59,6 @@ class Options {
                     canvasDimensions.w * 0.6,
                     canvasDimensions.h * 0.8
                 ),
-                visible: true,
             },
             {
                 caption: "Clear",
@@ -68,7 +67,6 @@ class Options {
                     canvasDimensions.h * 0.15
                 ),
                 width: 60 * resizeValue,
-                visible: true,
             },
             {
                 caption: "Hit",
