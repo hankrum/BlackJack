@@ -80,13 +80,16 @@ class Game {
         if (this._data.hasPlayerBlackJack()) {
             if (this._data.hasDealerBlackJack()) {
                 this._data.changePlayerFunds(this._data.bid);
+                // TODO: PUSH on the screen
             }
             else {
                 // TODO: BLACKJACK! on the screen
                 this._data.changePlayerFunds(this._data.bid);
                
             }
-        }
+            this._data.setButtonVisible("Deal", true);
+            this._data.setButtonVisible("Clear", true);
+            }
 
         this._data.setButtonVisible("Hit", true);
         this._data.setButtonVisible("Stand", true);
