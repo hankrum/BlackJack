@@ -11,14 +11,14 @@ class Data {
         this._bid = this._options.minBid;
         this._deck = new Deck(
             {
-                position: this._options.deckPosition, 
-                width: this._options.cardDimensions.w, 
+                position: this._options.deckPosition,
+                width: this._options.cardDimensions.w,
                 height: this._options.cardDimensions.h,
                 visible: true,
             }
         );
 
-        this._buttons = this.setButtons(); 
+        this._buttons = this.setButtons();
         this._chips = this.setChips();
 
         this._playerFunds = this._options.playerFunds; // TODO: load from browser memory
@@ -116,13 +116,13 @@ class Data {
     }
 
     setButtons() {
-        const buttons = this._options.buttonsDetails.map(function(details){ return new Button(details); });
+        const buttons = this._options.buttonsDetails.map(function (details) { return new Button(details); });
 
         return buttons;
     }
 
     getButtonIndexByName(name) {
-        const buttonNames = this._buttons.map(function(button) {return button.caption});
+        const buttonNames = this._buttons.map(function (button) { return button.caption });
         return buttonNames.indexOf(name);
     }
 
@@ -132,15 +132,30 @@ class Data {
     }
 
     setChips() {
-        const chips = this._options.chipsDetails.map(function(details){ return new Chip(details); });
+        const chips = this._options.chipsDetails.map(function (details) { return new Chip(details); });
 
         return chips;
+    }
+
+    playerHandScore() {
+        this._playerCards.reduce(function (sum, card) { return sum + card.score; });
+    }
+
+    dealerHandScore() {
+        this._dealerCards.reduce(function (sum, card) { return sum + card.score; });
+    }
+
+    isPlayerBlackJack() {
+        function playerHas(cardScore) {
+            this._playerCards.some(function (card) { card.score === cardScore });
+        }
+        return this.playerHas(10) && this.playerHas(1);
     }
 
     // _setImages() {
     //     // debugger;
     //     this._deck.image = ImageProvider.loadImage('./images/card-back.png', this._options.cardDimensions.w, this._options.cardDimensions.h);
-        
+
     // }
 
     // _setPositions() {        //creates positions 1, 2, 3, A and B
