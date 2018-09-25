@@ -77,6 +77,17 @@ class Game {
         this._data.dealerCards[1].hidden = true;
 
         // TODO: check for 21, loss and other buttons
+        if (this._data.hasPlayerBlackJack()) {
+            if (this._data.hasDealerBlackJack()) {
+                this._data.changePlayerFunds(this._data.bid);
+            }
+            else {
+                // TODO: BLACKJACK! on the screen
+                this._data.changePlayerFunds(this._data.bid);
+               
+            }
+        }
+
         this._data.setButtonVisible("Hit", true);
         this._data.setButtonVisible("Stand", true);
 

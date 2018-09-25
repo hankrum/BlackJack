@@ -145,11 +145,20 @@ class Data {
         this._dealerCards.reduce(function (sum, card) { return sum + card.score; });
     }
 
-    isPlayerBlackJack() {
-        function playerHas(cardScore) {
-            this._playerCards.some(function (card) { card.score === cardScore });
-        }
-        return this.playerHas(10) && this.playerHas(1);
+    _playerHas(cardScore) {
+        this._playerCards.some(function (card) { card.score === cardScore });
+    }
+
+    _dealerHas(cardScore) {
+        this._dealerCards.some(function (card) { card.score === cardScore });
+    }
+
+    hasPlayerBlackJack() {
+        return this._playerHas(10) && this._playerHas(1);
+    }
+
+    hasDealerBlackJack() {
+        return this._dealerHas(10) && this._dealerHas(1);
     }
 
     // _setImages() {
