@@ -2,8 +2,8 @@ class Options {
     constructor() {
         const _this = this;
         const baseScreenResolution = {
-            w: 1460,        
-            h: 700      
+            w: 1460,
+            h: 700
         };
 
         const baseCanvasDimensions = {
@@ -13,7 +13,7 @@ class Options {
 
         this.baseCanvasDimensions = baseCanvasDimensions;
 
-        const resizeValue = this.calculateInitialResize();       
+        const resizeValue = this.calculateInitialResize();
         const canvasDimensions = {
             w: baseCanvasDimensions.w * resizeValue,
             h: baseCanvasDimensions.h * resizeValue,
@@ -43,26 +43,26 @@ class Options {
         }
 
         this.playerCardOffset = 0.1;
-        
+
         this.firstDealerCardPosition = {
             x: canvasDimensions.w * 0.6,
             y: canvasDimensions.h * 0.4
         }
 
         this.dealerCardOffset = 0.1;
-        
+
         this._buttonSize = 80 * resizeValue;
         this.buttonsDetails = [
             {
                 caption: "Deal",
-                position: new Point (
+                position: new Point(
                     canvasDimensions.w * 0.6,
                     canvasDimensions.h * 0.8
                 ),
             },
             {
                 caption: "Clear",
-                position: new Point (
+                position: new Point(
                     canvasDimensions.w * 0.05,
                     canvasDimensions.h * 0.15
                 ),
@@ -70,42 +70,78 @@ class Options {
             },
             {
                 caption: "Hit",
-                position: new Point (
+                position: new Point(
                     canvasDimensions.w * 0.7,
                     canvasDimensions.h * 0.8
                 ),
             },
             {
                 caption: "Stand",
-                position: new Point (
+                position: new Point(
                     canvasDimensions.w * 0.8,
                     canvasDimensions.h * 0.8
                 ),
             },
             {
                 caption: "Double",
-                position: new Point (
+                position: new Point(
                     canvasDimensions.w * 0.9,
                     canvasDimensions.h * 0.8
                 ),
             },
             {
                 caption: "Split",
-                position: new Point (
+                position: new Point(
                     canvasDimensions.w * 0.5,
                     canvasDimensions.h * 0.8
                 ),
             },
             {
                 caption: "Insure",
-                position: new Point (
+                position: new Point(
                     canvasDimensions.w * 0.4,
                     canvasDimensions.h * 0.8
                 ),
             },
         ];
 
-        this.buttonsDetails.forEach(function(detail){ detail.width = detail.width || _this._buttonSize });
+        this.textsDetails = [
+            {
+                name: "heading",
+                position: new Point(this.canvasDimensions.w / 2, 70 * this.resizeValue),
+                text: "BLACKJACK",
+                size: 30,
+                visible: true,
+            },
+            {
+                name: "bid",
+                position: new Point(this.canvasDimensions.w * 0.1, 80 * this.resizeValue),
+                text: "Your bid: $",
+                size: 20,
+                visible: true,
+            },
+            {
+                name: "player-funds",
+                position: new Point(canvasDimensions.w * 0.07, canvasDimensions.h * 0.7),
+                text: "$",
+                size: 20,
+                visible: true,
+            },
+            {
+                name: "player-hand",
+                position: new Point(canvasDimensions.w * 0.1, canvasDimensions.h * 0.2),
+                text: "Player hand: ",
+                size: "20",
+            },
+            {
+                name: "dealer-hand",
+                position: new Point(canvasDimensions.w * 0.6, canvasDimensions.h * 0.3),
+                text: "Dealer hand: ",
+                size: "20",
+            },
+        ];
+
+        this.buttonsDetails.forEach(function (detail) { detail.width = detail.width || _this._buttonSize });
 
         this._firstChipPosition = new Point(canvasDimensions.w * 0.05, canvasDimensions.h * 0.8);
         this._chipSize = 80 * this.resizeValue;
@@ -113,22 +149,16 @@ class Options {
 
         this._chipCaptions = ["5", "10", "50", "100"];
 
-        this.chipsDetails = this._chipCaptions.map(function(chipCaption, i) {
-            return{
+        this.chipsDetails = this._chipCaptions.map(function (chipCaption, i) {
+            return {
                 caption: chipCaption,
-                position: new Point (_this._firstChipPosition.x + i * _this._chipOffset, _this._firstChipPosition.y),
+                position: new Point(_this._firstChipPosition.x + i * _this._chipOffset, _this._firstChipPosition.y),
             };
         });
-        this.chipsDetails.forEach(function(detail){ detail.width = _this._chipSize });
-
-        this.headingText = "BLACKJACK";
-        this.headingPosition = new Point(this.canvasDimensions.w / 2, 70 * this.resizeValue);
-
-        this.bidPosition = new Point(this.canvasDimensions.w * 0.1 , 80 * this.resizeValue);
+        this.chipsDetails.forEach(function (detail) { detail.width = _this._chipSize });
 
         this.minBid = 5;
         this.playerFunds = 2495;
-        this.playerFundsPosition = new Point(canvasDimensions.w * 0.07, canvasDimensions.h * 0.7);
 
         // this.outPoint = {
         //     x: canvasDimensions.w * 0.3,

@@ -17,6 +17,8 @@ class Game {
     }
 
     _handleBid(clickPoint) {
+        const bidIndex = this._data.getTextIndexByName("bid");
+        this._data.texts[bidIndex].text += this._data.bid;
         this._data.chips.forEach(function (chip) {
             if (chip.hasClick(clickPoint)) {
                 data.changeBid(chip.price);

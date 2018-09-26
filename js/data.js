@@ -5,6 +5,7 @@ class Data {
         this._dealerCards = [];
         this._buttons = [];
         this._chips = [];
+        this._texts = [];
 
         this._options = options;
 
@@ -20,6 +21,7 @@ class Data {
 
         this._buttons = this.setButtons();
         this._chips = this.setChips();
+        this._texts = this.setTexts();
 
         this._playerFunds = this._options.playerFunds; // TODO: load from browser memory
         // this._setImages();
@@ -51,6 +53,10 @@ class Data {
 
     get chips() {
         return this._chips;
+    }
+
+    get texts() {
+        return this._texts;
     }
 
     // get cards() {
@@ -129,6 +135,22 @@ class Data {
     setButtonVisible(name, value) {
         const index = this.getButtonIndexByName(name);
         this._buttons[index].visible = value;
+    }
+
+    setTexts() {
+        const texts = this._options.textsDetails.map(function (detail) { return new Text(detail); });
+
+        return texts;
+    }
+
+    getTextIndexByName(name) {
+        const textNames = this._texts.map(function (text) { return text.name });
+        return textNames.indexOf(name);
+    }
+
+    setTextVisible(name, value) {
+        const index = this.getTextIndexByName(name);
+        this._texts[index].visible = value;
     }
 
     setChips() {

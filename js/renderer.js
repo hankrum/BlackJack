@@ -6,17 +6,17 @@ class Renderer {
         this._data = data;
     }
 
-    heading() {           //Prints the heading
-        this.text(this._options.headingText, { size: 30, position: this._options.headingPosition });
-    }
+    // heading() {           //Prints the heading
+    //     this.text(this._options.headingText, { size: 30, position: this._options.headingPosition });
+    // }
 
-    bid() {
-        this.text("Your bid: $" + this._data.bid, { size: 20, position: this._options.bidPosition });
-    }
+    // bid() {
+    //     this.text("Your bid: $" + this._data.bid, { size: 20, position: this._options.bidPosition });
+    // }
 
-    playerFunds() {
-        this.text("$" + this._data.playerFunds, { size: 20, position: this._options.playerFundsPosition })
-    }
+    // playerFunds() {
+    //     this.text("$" + this._data.playerFunds, { size: 20, position: this._options.playerFundsPosition })
+    // }
 
     // delimiter() {
     //     const fontString = Math.floor(30 * this._options.resizeValue) + "pt Comic Sans MS";
@@ -29,12 +29,12 @@ class Renderer {
     //     this._context.strokeText(text, this._options.canvasDimensions.w / 2, this._options.canvasDimensions.h / 2);
     // }
 
-    text(text, details) {
-        const fontString = 
+    _text(text, details) {
+        const fontString =
             details.bold ? "bold " : ""
-            + Math.floor(details.size * this._options.resizeValue)
-            + "pt "
-            + (details.font || "Comic Sans MS");
+                + Math.floor(details.size * this._options.resizeValue)
+                + "pt "
+                + (details.font || "Comic Sans MS");
 
         this._context.font = fontString;
         this._context.fillStyle = details.fillStyle || "white";
@@ -45,24 +45,49 @@ class Renderer {
         this._context.strokeText(text, details.position.x, details.position.y);
     }
 
+    textObject(value) {
+        if (value.visible) {
+            const fontString =
+                value.bold ? "bold " : ""
+                    + Math.floor(value.size * this._options.resizeValue)
+                    + "pt "
+                    + (value.font || "Comic Sans MS");
+
+            this._context.font = fontString;
+            this._context.fillStyle = value.fillStyle || "white";
+            this._context.textAlign = value.textAlign || "center";
+
+            this._context.fillText(value.text, value.position.x, value.position.y);
+            this._context.strokeStyle = value.strokeStyle || "red";
+            this._context.strokeText(value.text, value.position.x, value.position.y);
+        }
+    }
+
+    texts() {
+        const _this = this;
+        _this._data.texts.forEach(function (text) {
+            _this.textObject(text);
+        });
+    }
+
     sprite(sprite) {
         if (sprite.visible) {
             this._context.shadowBlur = 20;
             this._context.shadowColor = "black";
-            this._context.drawImage (
-                sprite.image, 
-                sprite.position.x, 
-                sprite.position.y, 
-                sprite.width, 
+            this._context.drawImage(
+                sprite.image,
+                sprite.position.x,
+                sprite.position.y,
+                sprite.width,
                 sprite.height
             );
             if (sprite.caption) {
                 this._context.font = "bold " + Math.floor(20 * this._options.resizeValue) + "px Comic Sans MS";
                 this._context.fillStyle = 'white';
                 this._context.textAlign = "center";
-                this._context.fillText (
-                    sprite.caption, 
-                    sprite.position.x + sprite.width / 2, 
+                this._context.fillText(
+                    sprite.caption,
+                    sprite.position.x + sprite.width / 2,
                     sprite.position.y + sprite.height / 2 + 10 * this._options.resizeValue
                 );
             }
@@ -76,27 +101,27 @@ class Renderer {
         const x = (cn % 13) * 167;
         const y = Math.floor(cn / 13) * 243;
         //debugger;
-        cardp._hidden 
-        ?
-        this._context.drawImage (
-            cardp.image, 
-            cardp.position.x, 
-            cardp.position.y, 
-            cardp.width, 
-            cardp.height
-        ) 
-        :
-        this._context.drawImage (
-            cardp.image, 
-            (cn % 13) * 167.5 + 1,
-            Math.floor(cn / 13) * 243 + 1,
-            166,
-            243,
-            cardp.position.x, 
-            cardp.position.y, 
-            cardp.width, 
-            cardp.height
-        );
+        cardp._hidden
+            ?
+            this._context.drawImage(
+                cardp.image,
+                cardp.position.x,
+                cardp.position.y,
+                cardp.width,
+                cardp.height
+            )
+            :
+            this._context.drawImage(
+                cardp.image,
+                (cn % 13) * 167.5 + 1,
+                Math.floor(cn / 13) * 243 + 1,
+                166,
+                243,
+                cardp.position.x,
+                cardp.position.y,
+                cardp.width,
+                cardp.height
+            );
     }
 
     // spriteArray(sprites) {
@@ -114,7 +139,7 @@ class Renderer {
 
     buttons() {
         const _this = this;
-        this._data.buttons.forEach(function(button) { _this.sprite(button); });
+        this._data.buttons.forEach(function (button) { _this.sprite(button); });
 
         // this.render(this._data.button.image, this._options.buttonPosition, this._options.buttonSize, this._options.buttonSize);
         // this._context.font = "bold " + Math.floor(30 * this._options.resizeValue) + "px Comic Sans MS";
@@ -127,8 +152,8 @@ class Renderer {
     chips() {
         const _this = this;
         this._data.chips.forEach(
-            function(chip) { 
-                _this.sprite(chip); 
+            function (chip) {
+                _this.sprite(chip);
             }
         );
     }
@@ -145,15 +170,15 @@ class Renderer {
         //     // console.log(i+ " - x: " + _this._data.playerCards[i].position.x + ", y: " + _this._data.playerCards[i].position.y);
         // }
         this._data.playerCards.forEach(
-            function(card) { 
-                _this.card(card); 
+            function (card) {
+                _this.card(card);
                 card.move();
             }
         );
 
         this._data.dealerCards.forEach(
-            function(card) { 
-                _this.card(card); 
+            function (card) {
+                _this.card(card);
                 card.move();
             }
         );
@@ -164,10 +189,11 @@ class Renderer {
     }
 
     field() {
-        this.heading();
+        // this.heading();
         this.deck();
-        this.bid();
-        this.playerFunds();
+        this.texts();
+        // this.bid();
+        // this.playerFunds();
         // this.sprite(
         //     {
         //         image: loadImage('./images/card-back.png', this._options.cardDimensions.w, this._options.cardDimensions.h), 
@@ -179,7 +205,7 @@ class Renderer {
         // );
         this.chips();
         this.cards();
-        this.buttons(); 
+        this.buttons();
 
 
         // for (let i = 0; i < this._data.positions.length; i += 1) {
