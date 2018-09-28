@@ -55,7 +55,7 @@ class Card extends Sprite {
     }
 
     get destination() {
-        return this._positionDestination;
+        return this._destination;
     }
 
     get score() {

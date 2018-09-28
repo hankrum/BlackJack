@@ -86,13 +86,14 @@ class Game {
             }
             else {
                 // TODO: BLACKJACK! on the screen
-                this._data.changePlayerFunds(this._data.bid);
+                this._data.changePlayerFunds(this._data.bid * 1.5);
 
             }
             this._data.setButtonVisible("Deal", true);
             this._data.setButtonVisible("Clear", true);
         }
 
+        this._data.setButtonVisible("Double", true);
         this._data.setButtonVisible("Hit", true);
         this._data.setButtonVisible("Stand", true);
 
@@ -111,10 +112,10 @@ class Game {
                     _this._onDealButton();
                 }
                 else if (buttonName === "Hit") {
-                    const lastPosition = _this._data.playerCards[_this._data.playerCards.length - 1].position;
+                    const lastDestination = _this._data.playerCards[_this._data.playerCards.length - 1].destination;
                     const destination = new Point(
-                        lastPosition.x + _this._options.cardDimensions.w + 20 * _this._options.resizeValue,
-                        lastPosition.y
+                        lastDestination.x + _this._options.cardDimensions.w + 20 * _this._options.resizeValue,
+                        lastDestination.y
                     );
                     const card = _this._dealCard(destination);
                     _this._data.playerCards.push(card);
