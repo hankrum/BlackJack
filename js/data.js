@@ -89,10 +89,12 @@ class Data {
         if (sufficientFunds) {
             this._bid += value;
         }
+        this.setTextParameter("bid", this._bid);
     }
 
     bidReset() {
         this._bid = this._options.minBid;
+        this.setTextParameter("bid", this._bid);
     }
 
     changePlayerFunds(value) {
@@ -151,6 +153,11 @@ class Data {
     setTextVisible(name, value) {
         const index = this.getTextIndexByName(name);
         this._texts[index].visible = value;
+    }
+
+    setTextParameter(name, value) {
+        const index = this.getTextIndexByName(name);
+        this._texts[index].parameter = value;
     }
 
     setChips() {

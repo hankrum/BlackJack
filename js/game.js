@@ -14,11 +14,12 @@ class Game {
 
         this._data = new Data(this._options);
         this._renderer = new Renderer(this._context, this._options, this._data);
+        this._data.bidReset();
     }
 
     _handleBid(clickPoint) {
         const bidIndex = this._data.getTextIndexByName("bid");
-        this._data.texts[bidIndex].text += this._data.bid;
+        this._data.texts[bidIndex].parameter = this._data.bid;
         this._data.chips.forEach(function (chip) {
             if (chip.hasClick(clickPoint)) {
                 data.changeBid(chip.price);
@@ -143,7 +144,7 @@ class Game {
         this._handleClick();
 
         window.addEventListener('resize', function (e) {
-            options = new Options();
+            this._options = new Options();
             location.reload();
             // canvas.width = options.canvasDimensions.w;
             // canvas.height = options.canvasDimensions.h;

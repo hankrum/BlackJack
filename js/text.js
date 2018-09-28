@@ -5,6 +5,7 @@ class Text {
         this._position = details.position;
         this._size = details.size;
         this._visible = details.visible;
+        this._parameter = details.parameter || "";
     }
 
     get name() {
@@ -33,5 +34,13 @@ class Text {
 
     set visible(value) {
         this._visible = value;
+    }
+
+    get parameter() {
+        return this._parameter;
+    }
+
+    set parameter(value) {
+        this._parameter = value;
     }
 }

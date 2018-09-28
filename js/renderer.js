@@ -56,10 +56,19 @@ class Renderer {
             this._context.font = fontString;
             this._context.fillStyle = value.fillStyle || "white";
             this._context.textAlign = value.textAlign || "center";
+            //debugger;
 
-            this._context.fillText(value.text, value.position.x, value.position.y);
+            this._context.fillText(
+                value.text + value.parameter,
+                value.position.x,
+                value.position.y
+            );
             this._context.strokeStyle = value.strokeStyle || "red";
-            this._context.strokeText(value.text, value.position.x, value.position.y);
+            this._context.strokeText(
+                value.text + value.parameter,
+                value.position.x,
+                value.position.y
+            );
         }
     }
 
