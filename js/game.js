@@ -97,6 +97,9 @@ class Game {
         this._data.setButtonVisible("Hit", true);
         this._data.setButtonVisible("Stand", true);
 
+        if (this._data.playerCards[0].score === this._data.playerCards[1].score){
+            this._data.setButtonVisible("Split", true);
+        }
     }
 
     _handleButtons(clickPoint) {
@@ -119,10 +122,13 @@ class Game {
                     );
                     const card = _this._dealCard(destination);
                     _this._data.playerCards.push(card);
+
+                    _this._data.setButtonVisible("Double", false);
                 }
                 else if (buttonName === "Stand") {
                     _this._data.dealerCards[1].hidden = false;
 
+                    _this._data.setButtonVisible("Double", false);
                 }
             }
         });

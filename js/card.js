@@ -24,7 +24,7 @@ class Card extends Sprite {
 
         this._hidden = false;
 
-        const imageFileName = this.getCardFileName();
+        // const imageFileName = this.getCardFileName();
         this._image = document.getElementById("cards");
         this._visible = true;
         this._score = number % 13 > 10 ? 10 : number % 13;
@@ -50,9 +50,9 @@ class Card extends Sprite {
     //     return this._cardOut;
     // }
 
-    get reachedEndPoint() {
-        return this._reachedEndPoint;
-    }
+    // get reachedEndPoint() {
+    //     return this._reachedEndPoint;
+    // }
 
     get destination() {
         return this._destination;
@@ -107,24 +107,24 @@ class Card extends Sprite {
     //     return this;
     // }
 
-    _getCardId() {
-        const cardNames = ["ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "jack", "queen", "king" ];
-        const cardColors = ["clubs", "diamonds", "hearts", "spades"];
+    // _getCardId() {
+    //     const cardNames = ["ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "jack", "queen", "king" ];
+    //     const cardColors = ["clubs", "diamonds", "hearts", "spades"];
     
-        const cardName = cardNames[this._number % 13];
-        const cardColor = cardColors[Math.floor(this._number / 13)];
-        const cardId = cardName + "_of_" + cardColor;
+    //     const cardName = cardNames[this._number % 13];
+    //     const cardColor = cardColors[Math.floor(this._number / 13)];
+    //     const cardId = cardName + "_of_" + cardColor;
     
-        return cardId;
-    }
+    //     return cardId;
+    // }
     
-    getCardFileName() {
-        const pathCardImages = ".\\images\\cards\\";
+    // getCardFileName() {
+    //     const pathCardImages = ".\\images\\cards\\";
     
-        const cardId = this._getCardId();
-        const cardFileName = pathCardImages + cardId + ".png";
+    //     const cardId = this._getCardId();
+    //     const cardFileName = pathCardImages + cardId + ".png";
     
-        return cardFileName;
-    }
+    //     return cardFileName;
+    // }
     
 }
