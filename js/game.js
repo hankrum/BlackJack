@@ -97,7 +97,7 @@ class Game {
         this._data.setButtonVisible("Hit", true);
         this._data.setButtonVisible("Stand", true);
 
-        if (this._data.playerCards[0].score === this._data.playerCards[1].score){
+        if (this._data.playerCards[0].score === this._data.playerCards[1].score) {
             this._data.setButtonVisible("Split", true);
         }
     }
@@ -129,6 +129,13 @@ class Game {
                     _this._data.dealerCards[1].hidden = false;
 
                     _this._data.setButtonVisible("Double", false);
+                }
+                else if (buttonName === "Double") {
+                    _this._data.changePlayerFunds(-_this._data.bid);
+                    _this._data.changeBid(_this._data.bid);
+
+                    _this._data.setButtonVisible("Double", false);
+                    // TODO: fix only one card allowed to Hit
                 }
             }
         });
