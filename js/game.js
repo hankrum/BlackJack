@@ -14,18 +14,18 @@ class Game {
 
         this._data = new Data(this._options);
         this._renderer = new Renderer(this._context, this._options, this._data);
-        this._data.bidReset();
     }
 
     _handleBid(clickPoint) {
+        const _this = this;
         const bidIndex = this._data.getTextIndexByName("bid");
-        this._data.texts[bidIndex].parameter = this._data.bid;
         this._data.chips.forEach(function (chip) {
             if (chip.hasClick(clickPoint)) {
-                data.changeBid(chip.price);
-                data.changePlayerFunds(-chip.price);
+                _this._data.changeBid(chip.price);
+                _this._data.changePlayerFunds(-chip.price);
             }
         });
+        this._data.texts[bidIndex].parameter = this._data.bid;
     }
 
     _onClearButton() {

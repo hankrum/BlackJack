@@ -19,11 +19,11 @@ class Data {
             }
         );
 
-        this._buttons = this.setButtons();
-        this._chips = this.setChips();
-        this._texts = this.setTexts();
-
         this._playerFunds = this._options.playerFunds; // TODO: load from browser memory
+
+        this.setButtons();
+        this.setChips();
+        this.setTexts();
         // this._setImages();
         // this._positions = [];
         // this._button = new Button(this._options.buttonPosition, this._options.buttonSize, this._options);
@@ -102,31 +102,33 @@ class Data {
         if (newFunds >= 0) {
             this._playerFunds = newFunds;
         }
+
+        this.setTextParameter("player-funds", this._playerFunds);
     }
 
-    setFirstCards() {       //initial cards for positions 1, 2, 3, A and B before pressing cards and button
-        const cards = [];
-        for (let i = 0; i < this._positions.length; i += 1) {
-            const cn = Math.floor(Math.random() * this._deck.deck.length); //get a random card from the deck
-            const card = new Card(
-                point(this._options.deckPosition.x, this._options.deckPosition.y),
-                point(this._positions[i].point.x, this._positions[i].point.y),
-                this._deck.deck[cn],
-                this._options.speed,
-                i,
-                this._deck.cardImages[this._deck.deck[cn]],
-            );
+    // setFirstCards() {       //initial cards for positions 1, 2, 3, A and B before pressing cards and button
+    //     const cards = [];
+    //     for (let i = 0; i < this._positions.length; i += 1) {
+    //         const cn = Math.floor(Math.random() * this._deck.deck.length); //get a random card from the deck
+    //         const card = new Card(
+    //             point(this._options.deckPosition.x, this._options.deckPosition.y),
+    //             point(this._positions[i].point.x, this._positions[i].point.y),
+    //             this._deck.deck[cn],
+    //             this._options.speed,
+    //             i,
+    //             this._deck.cardImages[this._deck.deck[cn]],
+    //         );
 
-            this._deck.deck.splice(cn, 1);
-            cards.push(card);
-        }
-        return cards;
-    }
+    //         this._deck.deck.splice(cn, 1);
+    //         cards.push(card);
+    //     }
+    //     return cards;
+    // }
 
     setButtons() {
         const buttons = this._options.buttonsDetails.map(function (details) { return new Button(details); });
 
-        return buttons;
+        this._buttons = buttons;
     }
 
     getButtonIndexByName(name) {
@@ -141,6 +143,9 @@ class Data {
 
     setTexts() {
         const texts = this._options.textsDetails.map(function (detail) { return new Text(detail); });
+        this._texts = texts;
+        this.setTextParameter("bid", this.bid);
+        this.setTextParameter("player-funds", this._playerFunds);
 
         return texts;
     }
@@ -163,7 +168,7 @@ class Data {
     setChips() {
         const chips = this._options.chipsDetails.map(function (details) { return new Chip(details); });
 
-        return chips;
+        this._chips = chips;
     }
 
     playerHandScore() {

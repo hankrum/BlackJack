@@ -29,21 +29,21 @@ class Renderer {
     //     this._context.strokeText(text, this._options.canvasDimensions.w / 2, this._options.canvasDimensions.h / 2);
     // }
 
-    _text(text, details) {
-        const fontString =
-            details.bold ? "bold " : ""
-                + Math.floor(details.size * this._options.resizeValue)
-                + "pt "
-                + (details.font || "Comic Sans MS");
+    // _text(text, details) {
+    //     const fontString =
+    //         details.bold ? "bold " : ""
+    //             + Math.floor(details.size * this._options.resizeValue)
+    //             + "pt "
+    //             + (details.font || "Comic Sans MS");
 
-        this._context.font = fontString;
-        this._context.fillStyle = details.fillStyle || "white";
-        this._context.textAlign = details.textAlign || "center";
+    //     this._context.font = fontString;
+    //     this._context.fillStyle = details.fillStyle || "white";
+    //     this._context.textAlign = details.textAlign || "center";
 
-        this._context.fillText(text, details.position.x, details.position.y);
-        this._context.strokeStyle = details.strokeStyle || "red";
-        this._context.strokeText(text, details.position.x, details.position.y);
-    }
+    //     this._context.fillText(text, details.position.x, details.position.y);
+    //     this._context.strokeStyle = details.strokeStyle || "red";
+    //     this._context.strokeText(text, details.position.x, details.position.y);
+    // }
 
     textObject(value) {
         if (value.visible) {
