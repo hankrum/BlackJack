@@ -1,8 +1,8 @@
 class Card extends Sprite {
-    constructor (
-        number, 
-        destination, 
-        options, 
+    constructor(
+        number,
+        destination,
+        options,
         // endPoint, 
         // speed, 
     ) {
@@ -27,13 +27,13 @@ class Card extends Sprite {
         // const imageFileName = this.getCardFileName();
         this._image = document.getElementById("cards");
         this._visible = true;
-        this._score = number % 13 > 10 ? 10 : number % 13;
+        this._score = number % 13 > 10 ? 10 : number % 13 + 1;
     }
 
     get number() {
         return this._number;
     }
-    
+
     get hidden() {
         return this._hidden;
     }
@@ -83,14 +83,14 @@ class Card extends Sprite {
         const speed = this._speed || 1;
         this._reachedEndPoint = this._reachedEndPoint || Math.abs(this._position.x - this._destination.x) < speed;
 
-        if (! this._reachedEndPoint) {
-        //     this._startPoint = this._endPoint;
-        //     this._currentPosition = this._endPoint;
-        //     if (this.cardOut) {
-        //         document.dispatchEvent(outEvent);
-        //     }
-        // }
-        // else {
+        if (!this._reachedEndPoint) {
+            //     this._startPoint = this._endPoint;
+            //     this._currentPosition = this._endPoint;
+            //     if (this.cardOut) {
+            //         document.dispatchEvent(outEvent);
+            //     }
+            // }
+            // else {
             this._position.x -= speed;
             this._position.y = Number(this._position.y + speed * this._moveData);
         }
@@ -110,21 +110,21 @@ class Card extends Sprite {
     // _getCardId() {
     //     const cardNames = ["ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "jack", "queen", "king" ];
     //     const cardColors = ["clubs", "diamonds", "hearts", "spades"];
-    
+
     //     const cardName = cardNames[this._number % 13];
     //     const cardColor = cardColors[Math.floor(this._number / 13)];
     //     const cardId = cardName + "_of_" + cardColor;
-    
+
     //     return cardId;
     // }
-    
+
     // getCardFileName() {
     //     const pathCardImages = ".\\images\\cards\\";
-    
+
     //     const cardId = this._getCardId();
     //     const cardFileName = pathCardImages + cardId + ".png";
-    
+
     //     return cardFileName;
     // }
-    
+
 }

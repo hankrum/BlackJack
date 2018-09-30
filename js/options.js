@@ -129,14 +129,32 @@ class Options {
             },
             {
                 name: "player-hand",
-                position: new Point(canvasDimensions.w * 0.1, canvasDimensions.h * 0.2),
+                position: new Point(this.firstPlayerCardPosition.x + this.cardDimensions.w, canvasDimensions.h * 0.25),
                 text: "Player hand: ",
                 size: "20",
             },
             {
                 name: "dealer-hand",
-                position: new Point(canvasDimensions.w * 0.6, canvasDimensions.h * 0.3),
+                position: new Point(this.firstDealerCardPosition.x + this.cardDimensions.w, canvasDimensions.h * 0.35),
                 text: "Dealer hand: ",
+                size: "20",
+            },
+            {
+                name: "dealer-wins",
+                position: new Point(canvasDimensions.w * 0.6, canvasDimensions.h * 0.3),
+                text: "Dealer wins!",
+                size: "20",
+            },
+            {
+                name: "player-wins",
+                position: new Point(canvasDimensions.w * 0.6, canvasDimensions.h * 0.3),
+                text: "Player wins!",
+                size: "20",
+            },
+            {
+                name: "push",
+                position: new Point(canvasDimensions.w * 0.6, canvasDimensions.h * 0.3),
+                text: "Push!",
                 size: "20",
             },
         ];

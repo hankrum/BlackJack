@@ -65,6 +65,9 @@ class Game {
             this._data.playerCards.push(card);
         }
 
+        this._data.setTextParameter("player-hand", this._data.playerHandScore());
+        this._data.setTextVisible("player-hand", true);
+
         this._data.resetDealerCards();
 
         for (let i = 0; i < 2; i++) {
@@ -77,6 +80,9 @@ class Game {
         }
 
         this._data.dealerCards[1].hidden = true;
+
+        this._data.setTextParameter("dealer-hand", this._data.dealerHandScore());
+        this._data.setTextVisible("dealer-hand", true);
 
         // TODO: check for 21, loss and other buttons
         if (this._data.hasPlayerBlackJack()) {

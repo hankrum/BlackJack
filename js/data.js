@@ -172,11 +172,13 @@ class Data {
     }
 
     playerHandScore() {
-        this._playerCards.reduce(function (sum, card) { return sum + card.score; });
+        const handValues = this._playerCards.map(function (card) { return card.score; });
+        return handValues.reduce(function (sum, cardValue) { return sum + cardValue; });
     }
 
     dealerHandScore() {
-        this._dealerCards.reduce(function (sum, card) { return sum + card.score; });
+        const handValues = this._dealerCards.map(function (card) { return card.hidden ? 0 : card.score; });
+        return handValues.reduce(function (sum, cardValue) { return sum + cardValue; });
     }
 
     _playerHas(cardScore) {
