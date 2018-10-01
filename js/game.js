@@ -154,6 +154,10 @@ class Game {
 
     }
 
+    _checkLoss() {
+
+    }
+
     _handleClick() {
         const _this = this;
         this._canvas.addEventListener('click', function (e) {
