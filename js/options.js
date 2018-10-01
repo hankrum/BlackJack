@@ -39,17 +39,17 @@ class Options {
 
         this.firstPlayerCardPosition = {
             x: canvasDimensions.w * 0.1,
-            y: canvasDimensions.h * 0.3
+            y: canvasDimensions.h * 0.25
         }
 
-        this.playerCardOffset = 0.1;
+        this.playerCardOffset = 10;
 
         this.firstDealerCardPosition = {
-            x: canvasDimensions.w * 0.6,
-            y: canvasDimensions.h * 0.4
+            x: canvasDimensions.w * 0.3,
+            y: canvasDimensions.h * 0.55
         }
 
-        this.dealerCardOffset = 0.1;
+        this.dealerCardOffset = 10;
 
         this._buttonSize = 80 * resizeValue;
         this.buttonsDetails = [
@@ -63,7 +63,7 @@ class Options {
             {
                 caption: "Clear",
                 position: new Point(
-                    canvasDimensions.w * 0.05,
+                    canvasDimensions.w * 0.1,
                     canvasDimensions.h * 0.15
                 ),
                 width: 60 * resizeValue,
@@ -111,6 +111,7 @@ class Options {
                 position: new Point(this.canvasDimensions.w / 2, 70 * this.resizeValue),
                 text: "BLACKJACK",
                 size: 30,
+                align: "center",
                 visible: true,
             },
             {
@@ -123,19 +124,19 @@ class Options {
             {
                 name: "player-funds",
                 position: new Point(canvasDimensions.w * 0.07, canvasDimensions.h * 0.7),
-                text: "$",
+                text: "Your cash: $",
                 size: 20,
                 visible: true,
             },
             {
                 name: "player-hand",
-                position: new Point(this.firstPlayerCardPosition.x + this.cardDimensions.w, canvasDimensions.h * 0.25),
-                text: "Player hand: ",
+                position: new Point(this.firstPlayerCardPosition.x, canvasDimensions.h * 0.22),
+                text: "Your hand: ",
                 size: "20",
             },
             {
                 name: "dealer-hand",
-                position: new Point(this.firstDealerCardPosition.x + this.cardDimensions.w, canvasDimensions.h * 0.35),
+                position: new Point(this.firstDealerCardPosition.x, canvasDimensions.h * 0.52),
                 text: "Dealer hand: ",
                 size: "20",
             },

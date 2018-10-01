@@ -57,12 +57,15 @@ class Game {
 
         for (let i = 0; i < 2; i++) {
             const destination = new Point(
-                this._options.firstPlayerCardPosition.x + i * (this._options.cardDimensions.w + 20 * this._options.resizeValue),
+                this._options.firstPlayerCardPosition.x
+                    + i * (this._options.cardDimensions.w + this._options.playerCardOffset * this._options.resizeValue),
                 this._options.firstPlayerCardPosition.y
             );
 
             const card = this._dealCard(destination);
             this._data.playerCards.push(card);
+
+            this._data.setTextParameter("player-hand", this._data.playerHandScore());
         }
 
         this._data.setTextParameter("player-hand", this._data.playerHandScore());
@@ -72,7 +75,8 @@ class Game {
 
         for (let i = 0; i < 2; i++) {
             const destination = new Point(
-                this._options.firstDealerCardPosition.x + i * (this._options.cardDimensions.w + 20 * this._options.resizeValue),
+                this._options.firstDealerCardPosition.x
+                    + i * (this._options.cardDimensions.w + this._options.dealerCardOffset * this._options.resizeValue),
                 this._options.firstDealerCardPosition.y
             );
             const card = this._dealCard(destination);
@@ -123,12 +127,14 @@ class Game {
                 else if (buttonName === "Hit") {
                     const lastDestination = _this._data.playerCards[_this._data.playerCards.length - 1].destination;
                     const destination = new Point(
-                        lastDestination.x + _this._options.cardDimensions.w + 20 * _this._options.resizeValue,
+                        lastDestination.x + _this._options.cardDimensions.w + _this._options.playerCardOffset * _this._options.resizeValue,
                         lastDestination.y
                     );
                     const card = _this._dealCard(destination);
                     _this._data.playerCards.push(card);
 
+                    _this._data.setTextParameter("player-hand", _this._data.playerHandScore());
+        
                     _this._data.setButtonVisible("Double", false);
                 }
                 else if (buttonName === "Stand") {

@@ -55,7 +55,7 @@ class Renderer {
 
             this._context.font = fontString;
             this._context.fillStyle = value.fillStyle || "white";
-            this._context.textAlign = value.textAlign || "center";
+            this._context.textAlign = value.align || "left";
             //debugger;
 
             this._context.fillText(
@@ -200,7 +200,6 @@ class Renderer {
     field() {
         // this.heading();
         this.deck();
-        this.texts();
         // this.bid();
         // this.playerFunds();
         // this.sprite(
@@ -214,6 +213,7 @@ class Renderer {
         // );
         this.chips();
         this.cards();
+        this.texts();
         this.buttons();
 
 

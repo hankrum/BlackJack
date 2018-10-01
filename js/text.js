@@ -6,6 +6,7 @@ class Text {
         this._size = details.size;
         this._visible = details.visible;
         this._parameter = details.parameter || "";
+        this._align = details.align;
     }
 
     get name() {
@@ -42,5 +43,9 @@ class Text {
 
     set parameter(value) {
         this._parameter = value;
+    }
+
+    get align() {
+        return this._align;
     }
 }
