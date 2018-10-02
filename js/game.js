@@ -88,14 +88,13 @@ class Game {
         this._data.setTextParameter("dealer-hand", this._data.dealerHandScore());
         this._data.setTextVisible("dealer-hand", true);
 
-        // TODO: check for 21, loss and other buttons
         if (this._data.hasPlayerBlackJack()) {
             if (this._data.hasDealerBlackJack()) {
                 this._data.changePlayerFunds(this._data.bid);
-                // TODO: PUSH on the screen
+                this._data.setTextVisible("push", true);
             }
             else {
-                // TODO: BLACKJACK! on the screen
+                this._data.setTextParameter("player-hand", "BLACKJACK!!!");
                 this._data.changePlayerFunds(this._data.bid * 1.5);
 
             }
@@ -133,7 +132,14 @@ class Game {
                     const card = _this._dealCard(destination);
                     _this._data.playerCards.push(card);
 
-                    _this._data.setTextParameter("player-hand", _this._data.playerHandScore());
+                    const playerHandScore = _this._data.playerHandScore();
+                    _this._data.setTextParameter("player-hand", playerHandScore);
+
+                    const loss = playerHandScore > 21;
+
+                    if (loss) {
+                        
+                    }
         
                     _this._data.setButtonVisible("Double", false);
                 }
@@ -154,7 +160,7 @@ class Game {
 
     }
 
-    _checkLoss() {
+    _loss() {
 
     }
 

@@ -27,7 +27,7 @@ class Card extends Sprite {
         // const imageFileName = this.getCardFileName();
         this._image = document.getElementById("cards");
         this._visible = true;
-        this._score = this._number % 13 > 10 ? 10 : this._number % 13 + 1;
+        this._score = this._number % 13 >= 10 ? 10 : this._number % 13 + 1;
     }
 
     get number() {
