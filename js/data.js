@@ -24,11 +24,6 @@ class Data {
         this.setButtons();
         this.setChips();
         this.setTexts();
-        // this._setImages();
-        // this._positions = [];
-        // this._button = new Button(this._options.buttonPosition, this._options.buttonSize, this._options);
-        // this._setPositions();
-        // this._cards = this.setFirstCards();
     }
 
     get playerCards() {
@@ -38,10 +33,6 @@ class Data {
     get dealerCards() {
         return this._dealerCards;
     }
-
-    // get positions() {
-    //     return this._positions;
-    // }
 
     get deck() {
         return this._deck;
@@ -95,6 +86,7 @@ class Data {
     bidReset() {
         this._bid = this._options.minBid;
         this.setTextParameter("bid", this._bid);
+        this.changePlayerFunds(-this._bid);
     }
 
     changePlayerFunds(value) {
@@ -105,25 +97,6 @@ class Data {
 
         this.setTextParameter("player-funds", this._playerFunds);
     }
-
-    // setFirstCards() {       //initial cards for positions 1, 2, 3, A and B before pressing cards and button
-    //     const cards = [];
-    //     for (let i = 0; i < this._positions.length; i += 1) {
-    //         const cn = Math.floor(Math.random() * this._deck.deck.length); //get a random card from the deck
-    //         const card = new Card(
-    //             point(this._options.deckPosition.x, this._options.deckPosition.y),
-    //             point(this._positions[i].point.x, this._positions[i].point.y),
-    //             this._deck.deck[cn],
-    //             this._options.speed,
-    //             i,
-    //             this._deck.cardImages[this._deck.deck[cn]],
-    //         );
-
-    //         this._deck.deck.splice(cn, 1);
-    //         cards.push(card);
-    //     }
-    //     return cards;
-    // }
 
     setButtons() {
         const buttons = this._options.buttonsDetails.map(function (details) { return new Button(details); });
@@ -169,6 +142,11 @@ class Data {
         const chips = this._options.chipsDetails.map(function (details) { return new Chip(details); });
 
         this._chips = chips;
+    }
+
+    setChipsVisible(value) {
+        this._chips.forEach(function (chip) { chip.visible = value; });
+
     }
 
     playerHandScore() {

@@ -51,14 +51,18 @@ class Game {
         this._data.deck.resetCards();
         this._data.setButtonVisible("Deal", false);
         this._data.setButtonVisible("Clear", false);
-        this._data.chips.forEach(function (chip) { chip.visible = false; });
+        this._data.setChipsVisible(false);
+        this._data.setTextVisible("dealer-wins", false);
+        this._data.setTextVisible("player-wins", false);
+        this._data.setTextVisible("push", false);
+        //this._data.chips.forEach(function (chip) { chip.visible = false; });
 
         this._data.resetPlayerCards();
 
         for (let i = 0; i < 2; i++) {
             const destination = new Point(
                 this._options.firstPlayerCardPosition.x
-                    + i * (this._options.cardDimensions.w + this._options.playerCardOffset * this._options.resizeValue),
+                + i * (this._options.cardDimensions.w + this._options.playerCardOffset * this._options.resizeValue),
                 this._options.firstPlayerCardPosition.y
             );
 
@@ -76,7 +80,7 @@ class Game {
         for (let i = 0; i < 2; i++) {
             const destination = new Point(
                 this._options.firstDealerCardPosition.x
-                    + i * (this._options.cardDimensions.w + this._options.dealerCardOffset * this._options.resizeValue),
+                + i * (this._options.cardDimensions.w + this._options.dealerCardOffset * this._options.resizeValue),
                 this._options.firstDealerCardPosition.y
             );
             const card = this._dealCard(destination);
@@ -95,7 +99,7 @@ class Game {
             }
             else {
                 this._data.setTextParameter("player-hand", "BLACKJACK!!!");
-                this._data.changePlayerFunds(this._data.bid * 1.5);
+                this._data.changePlayerFunds(this._data.bid * 2.5);
 
             }
             this._data.setButtonVisible("Deal", true);
@@ -106,7 +110,7 @@ class Game {
         this._data.setButtonVisible("Hit", true);
         this._data.setButtonVisible("Stand", true);
 
-        if (this._data.playerCards[0].score === this._data.playerCards[1].score) {
+        if (this._data.playerCards[0].shortNumber === this._data.playerCards[1].shortNumber) {
             this._data.setButtonVisible("Split", true);
         }
     }
@@ -124,6 +128,8 @@ class Game {
                     _this._onDealButton();
                 }
                 else if (buttonName === "Hit") {
+                    _this._data.setButtonVisible("Split", false);
+                    _this._data.setButtonVisible("Double", false);
                     const lastDestination = _this._data.playerCards[_this._data.playerCards.length - 1].destination;
                     const destination = new Point(
                         lastDestination.x + _this._options.cardDimensions.w + _this._options.playerCardOffset * _this._options.resizeValue,
@@ -135,20 +141,40 @@ class Game {
                     const playerHandScore = _this._data.playerHandScore();
                     _this._data.setTextParameter("player-hand", playerHandScore);
 
-                    const loss = playerHandScore > 21;
+                    const loss = Number(playerHandScore) > 21;
 
                     if (loss) {
-                        
+                        _this._loss();
                     }
-        
-                    _this._data.setButtonVisible("Double", false);
                 }
                 else if (buttonName === "Stand") {
+                    _this._data.setButtonVisible("Double", false);
+                    _this._data.setButtonVisible("Split", false);
                     _this._data.dealerCards[1].hidden = false;
 
-                    _this._data.setButtonVisible("Double", false);
+                    let dealRule = _this._data.dealerHandScore() < 17;
+                    while (dealRule) {
+                        const lastDestination = _this._data.dealerCards[_this._data.dealerCards.length - 1].destination;
+                        const destination = new Point(
+                            lastDestination.x + _this._options.cardDimensions.w + _this._options.playerCardOffset * _this._options.resizeValue,
+                            lastDestination.y
+                        );
+                        const card = _this._dealCard(destination);
+                        _this._data.dealerCards.push(card);
+
+                        dealRule = _this._data.dealerHandScore() < 17;
+                    }
+
+                    const dealerHandScore = _this._data.dealerHandScore();
+                    const playerWin = dealerHandScore > 21 || _this._data.playerHandScore() > dealerHandScore;
+
+                    if (playerWin) {
+                        this._data.setTextVisible("player-wins", true);
+
+                    }
                 }
                 else if (buttonName === "Double") {
+                    this._data.setButtonVisible("Split", false);
                     _this._data.changePlayerFunds(-_this._data.bid);
                     _this._data.changeBid(_this._data.bid);
 
@@ -157,11 +183,18 @@ class Game {
                 }
             }
         });
-
     }
 
     _loss() {
-
+        this._data.setTextVisible("dealer-wins", true);
+        this._data.setButtonVisible("Hit", false);
+        this._data.setButtonVisible("Stand", false);
+        this._data.setButtonVisible("Split", false);
+        this._data.setButtonVisible("Double", false);
+        this._data.dealerCards[1].hidden = false;
+        this._data.bidReset();
+        this._data.setChipsVisible(true);
+        this._data.setButtonVisible("Deal", true);
     }
 
     _handleClick() {
@@ -173,7 +206,6 @@ class Game {
             _this._handleButtons(clickPoint);
 
         }, false);
-
     }
 
     _engine() {
@@ -200,7 +232,9 @@ class Game {
         this._data.nextGame();
         this._data.setButtonVisible("Deal", true);
         this._data.setButtonVisible("Clear", true);
-        this._data.chips.forEach(function (chip) { chip.visible = true; });
+        this._data.setChipsVisible(true);
+        this._data.bidReset();
+        //this._data.chips.forEach(function (chip) { chip.visible = true; });
 
         this._renderer.field();
 

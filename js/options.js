@@ -24,7 +24,7 @@ class Options {
         };
 
         this.resizeValue = resizeValue;
-        this.speed = 10;
+        this.speed = 20;
         this.baseScreenResolution = baseScreenResolution;
         this.canvasDimensions = canvasDimensions;
         this.baseCardDimensions = baseCardDimensions;
@@ -142,21 +142,21 @@ class Options {
             },
             {
                 name: "dealer-wins",
-                position: new Point(canvasDimensions.w * 0.5, canvasDimensions.h * 0.25),
+                position: new Point(canvasDimensions.w * 0.5, canvasDimensions.h * 0.2),
                 align: "center",
                 text: "Dealer wins!",
                 size: "20",
             },
             {
                 name: "player-wins",
-                position: new Point(canvasDimensions.w * 0.5, canvasDimensions.h * 0.25),
+                position: new Point(canvasDimensions.w * 0.5, canvasDimensions.h * 0.2),
                 align: "center",
                 text: "You win!",
                 size: "20",
             },
             {
                 name: "push",
-                position: new Point(canvasDimensions.w * 0.5, canvasDimensions.h * 0.24),
+                position: new Point(canvasDimensions.w * 0.5, canvasDimensions.h * 0.2),
                 align: "center",
                 text: "Push!",
                 size: "20",
@@ -180,7 +180,7 @@ class Options {
         this.chipsDetails.forEach(function (detail) { detail.width = _this._chipSize });
 
         this.minBid = 5;
-        this.playerFunds = 2495;
+        this.playerFunds = 2500;
 
         // this.outPoint = {
         //     x: canvasDimensions.w * 0.3,
