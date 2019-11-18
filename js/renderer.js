@@ -100,6 +100,7 @@ class Renderer {
                     sprite.position.y + sprite.height / 2 + 10 * this._options.resizeValue
                 );
             }
+            sprite.setRendered();
         }
     }
 

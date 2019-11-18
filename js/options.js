@@ -8,7 +8,7 @@ class Options {
 
         const baseCanvasDimensions = {
             w: baseScreenResolution.w * 0.98,
-            h: baseScreenResolution.h * 0.98
+            h: baseScreenResolution.h * 0.98,
         };
 
         this.baseCanvasDimensions = baseCanvasDimensions;
@@ -190,8 +190,8 @@ class Options {
 
     calculateInitialResize() {
 
-        const currentWidth = window.innerWidth * 0.95;
-        const currentHeight = window.innerHeight * 0.95;
+        const currentWidth = window.innerWidth * 0.95 * 3 / 4;
+        const currentHeight = window.innerHeight * 0.95 * 3 / 4;
 
         const sideFieldCorrection = 0;
         const downFieldCorrection = 0;

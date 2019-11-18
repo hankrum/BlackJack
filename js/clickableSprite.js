@@ -6,12 +6,12 @@ class ClickableSprite extends Sprite {
         this._caption = details.caption;
     }
 
-   set clicked(value) {
-        this._clicked = value;
-    }
-
     get position() {
         return this._position;
+    }
+
+    get clicked() {
+        return this._clicked;
     }
 
     get image() {
@@ -29,9 +29,13 @@ class ClickableSprite extends Sprite {
             const y = Math.abs(buttonCenter.y - positionToTest.y);
             const distancefromCenter = Math.sqrt(x * x + y * y);
 
-            const isWithinButton = distancefromCenter <= this.width / 2;
+            const isWithinSprite = distancefromCenter <= this.width / 2;
 
-            return isWithinButton;
+            if (isWithinSprite) {
+                this._clicked = true;
+            }
+
+            return isWithinSprite;
         }
         else {
             return false;
@@ -39,7 +43,11 @@ class ClickableSprite extends Sprite {
 
     }
 
-    toggleClicked() {
-        this.clicked = !this.clicked;
+    click() {
+        this._clicked = true;
+    }
+
+    resetClick() {
+        this._clicked = false;
     }
 }

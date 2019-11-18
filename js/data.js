@@ -20,10 +20,15 @@ class Data {
         );
 
         this._playerFunds = this._options.playerFunds; // TODO: load from browser memory
+        this._newGame = false;
 
         this.setButtons();
         this.setChips();
         this.setTexts();
+    }
+
+    get newGame() {
+        return this._newGame;
     }
 
     get playerCards() {
@@ -50,6 +55,14 @@ class Data {
         return this._texts;
     }
 
+    get allCards() {
+        let cards = [];
+        cards.push.apply(cards, this._playerCards);
+        cards.push.apply(cards, this._dealerCards);
+
+        return cards;
+    }
+
     // get cards() {
     //     return this._playerCards.concat(this._dealerCards);
     // }
@@ -62,8 +75,13 @@ class Data {
         return this._playerFunds;
     }
 
+    setNewGame() {
+        this._newGame = true;
+    }
+
     nextGame() {
-        this.resetDealerCards();
+        this._newGame = false;
+        this.resetPlayerCards();
         this.resetDealerCards();
     }
 
@@ -86,7 +104,7 @@ class Data {
     bidReset() {
         this._bid = this._options.minBid;
         this.setTextParameter("bid", this._bid);
-        this.changePlayerFunds(-this._bid);
+        // this.changePlayerFunds(-this._bid);
     }
 
     changePlayerFunds(value) {
@@ -173,6 +191,10 @@ class Data {
 
     hasDealerBlackJack() {
         return this._dealerHas(10) && this._dealerHas(1);
+    }
+
+    cardsReachedEndPoints() {
+        return this.allCards.every(function(card) {card.reachedEndPoint });
     }
 
     // _setImages() {

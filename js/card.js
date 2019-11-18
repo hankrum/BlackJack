@@ -51,9 +51,9 @@ class Card extends Sprite {
     //     return this._cardOut;
     // }
 
-    // get reachedEndPoint() {
-    //     return this._reachedEndPoint;
-    // }
+    get reachedEndPoint() {
+        return this._reachedEndPoint;
+    }
 
     get destination() {
         return this._destination;

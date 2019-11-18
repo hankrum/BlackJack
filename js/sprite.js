@@ -6,6 +6,7 @@ class Sprite {
         this._height = details.height || details.width;
         this._visible = details.visible || true;
         this._caption = details.caption;
+        this._rendered = false;
     }
 
     get position() {
@@ -42,5 +43,17 @@ class Sprite {
 
     set image(value) {
         this._image = value;
+    }
+
+    get rendered() {
+        return this._rendered;
+    }
+
+    setRendered() {
+        this._rendered = true;
+    }
+
+    resetRendered() {
+        this._rendered = false;
     }
 }
